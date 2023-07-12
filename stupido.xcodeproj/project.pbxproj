@@ -8,12 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		88C69C932A5EFEDE00DE5C30 /* stupidoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */; };
-		88C69C952A5EFEDE00DE5C30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69C942A5EFEDE00DE5C30 /* ContentView.swift */; };
 		88C69C972A5EFEE000DE5C30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C69C962A5EFEE000DE5C30 /* Assets.xcassets */; };
 		88C69C9A2A5EFEE000DE5C30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C69C992A5EFEE000DE5C30 /* Preview Assets.xcassets */; };
 		88C69CA42A5EFEE000DE5C30 /* stupidoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CA32A5EFEE000DE5C30 /* stupidoTests.swift */; };
 		88C69CAE2A5EFEE000DE5C30 /* stupidoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CAD2A5EFEE000DE5C30 /* stupidoUITests.swift */; };
 		88C69CB02A5EFEE000DE5C30 /* stupidoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CAF2A5EFEE000DE5C30 /* stupidoUITestsLaunchTests.swift */; };
+		88C69CC22A5EFF3D00DE5C30 /* Scoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CBC2A5EFF3D00DE5C30 /* Scoring.swift */; };
+		88C69CC32A5EFF3D00DE5C30 /* Scoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CBC2A5EFF3D00DE5C30 /* Scoring.swift */; };
+		88C69CC42A5EFF3D00DE5C30 /* Subs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CBD2A5EFF3D00DE5C30 /* Subs.swift */; };
+		88C69CC52A5EFF3D00DE5C30 /* Subs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CBD2A5EFF3D00DE5C30 /* Subs.swift */; };
+		88C69CC82A5EFF3D00DE5C30 /* TopicsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CBF2A5EFF3D00DE5C30 /* TopicsFeature.swift */; };
+		88C69CC92A5EFF3D00DE5C30 /* TopicsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CBF2A5EFF3D00DE5C30 /* TopicsFeature.swift */; };
+		88C69CCB2A5EFF3D00DE5C30 /* ChallengeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CC02A5EFF3D00DE5C30 /* ChallengeFeatureTests.swift */; };
+		88C69CCC2A5EFF3D00DE5C30 /* ChallengeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CC12A5EFF3D00DE5C30 /* ChallengeFeature.swift */; };
+		88C69CD02A5F00B100DE5C30 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 88C69CCF2A5F00B100DE5C30 /* ComposableArchitecture */; };
+		88C69CD32A5F00CB00DE5C30 /* q20kshare in Frameworks */ = {isa = PBXBuildFile; productRef = 88C69CD22A5F00CB00DE5C30 /* q20kshare */; };
+		88C69CD52A5F05A800DE5C30 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CD42A5F05A800DE5C30 /* Data.swift */; };
+		88C69CD62A5F05A800DE5C30 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CD42A5F05A800DE5C30 /* Data.swift */; };
+		88C69CD72A5F093500DE5C30 /* ChallengeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69CC12A5EFF3D00DE5C30 /* ChallengeFeature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +48,6 @@
 /* Begin PBXFileReference section */
 		88C69C8F2A5EFEDE00DE5C30 /* stupido.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stupido.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stupidoApp.swift; sourceTree = "<group>"; };
-		88C69C942A5EFEDE00DE5C30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		88C69C962A5EFEE000DE5C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88C69C992A5EFEE000DE5C30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		88C69C9F2A5EFEE000DE5C30 /* stupidoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stupidoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +55,12 @@
 		88C69CA92A5EFEE000DE5C30 /* stupidoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stupidoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C69CAD2A5EFEE000DE5C30 /* stupidoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stupidoUITests.swift; sourceTree = "<group>"; };
 		88C69CAF2A5EFEE000DE5C30 /* stupidoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stupidoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		88C69CBC2A5EFF3D00DE5C30 /* Scoring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scoring.swift; sourceTree = "<group>"; };
+		88C69CBD2A5EFF3D00DE5C30 /* Subs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subs.swift; sourceTree = "<group>"; };
+		88C69CBF2A5EFF3D00DE5C30 /* TopicsFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicsFeature.swift; sourceTree = "<group>"; };
+		88C69CC02A5EFF3D00DE5C30 /* ChallengeFeatureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeFeatureTests.swift; sourceTree = "<group>"; };
+		88C69CC12A5EFF3D00DE5C30 /* ChallengeFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeFeature.swift; sourceTree = "<group>"; };
+		88C69CD42A5F05A800DE5C30 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C69CD32A5F00CB00DE5C30 /* q20kshare in Frameworks */,
+				88C69CD02A5F00B100DE5C30 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +114,12 @@
 			isa = PBXGroup;
 			children = (
 				88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */,
-				88C69C942A5EFEDE00DE5C30 /* ContentView.swift */,
+				88C69CD42A5F05A800DE5C30 /* Data.swift */,
+				88C69CC12A5EFF3D00DE5C30 /* ChallengeFeature.swift */,
+				88C69CC02A5EFF3D00DE5C30 /* ChallengeFeatureTests.swift */,
+				88C69CBC2A5EFF3D00DE5C30 /* Scoring.swift */,
+				88C69CBD2A5EFF3D00DE5C30 /* Subs.swift */,
+				88C69CBF2A5EFF3D00DE5C30 /* TopicsFeature.swift */,
 				88C69C962A5EFEE000DE5C30 /* Assets.xcassets */,
 				88C69C982A5EFEE000DE5C30 /* Preview Content */,
 			);
@@ -143,6 +167,10 @@
 			dependencies = (
 			);
 			name = stupido;
+			packageProductDependencies = (
+				88C69CCF2A5F00B100DE5C30 /* ComposableArchitecture */,
+				88C69CD22A5F00CB00DE5C30 /* q20kshare */,
+			);
 			productName = stupido;
 			productReference = 88C69C8F2A5EFEDE00DE5C30 /* stupido.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +243,10 @@
 				Base,
 			);
 			mainGroup = 88C69C862A5EFEDE00DE5C30;
+			packageReferences = (
+				88C69CCE2A5F00B100DE5C30 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				88C69CD12A5F00CB00DE5C30 /* XCRemoteSwiftPackageReference "q20kshare" */,
+			);
 			productRefGroup = 88C69C902A5EFEDE00DE5C30 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,8 +289,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88C69C952A5EFEDE00DE5C30 /* ContentView.swift in Sources */,
+				88C69CCC2A5EFF3D00DE5C30 /* ChallengeFeature.swift in Sources */,
+				88C69CD52A5F05A800DE5C30 /* Data.swift in Sources */,
 				88C69C932A5EFEDE00DE5C30 /* stupidoApp.swift in Sources */,
+				88C69CC42A5EFF3D00DE5C30 /* Subs.swift in Sources */,
+				88C69CC82A5EFF3D00DE5C30 /* TopicsFeature.swift in Sources */,
+				88C69CC22A5EFF3D00DE5C30 /* Scoring.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +302,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C69CD62A5F05A800DE5C30 /* Data.swift in Sources */,
+				88C69CD72A5F093500DE5C30 /* ChallengeFeature.swift in Sources */,
+				88C69CCB2A5EFF3D00DE5C30 /* ChallengeFeatureTests.swift in Sources */,
+				88C69CC92A5EFF3D00DE5C30 /* TopicsFeature.swift in Sources */,
 				88C69CA42A5EFEE000DE5C30 /* stupidoTests.swift in Sources */,
+				88C69CC52A5EFF3D00DE5C30 /* Subs.swift in Sources */,
+				88C69CC32A5EFF3D00DE5C30 /* Scoring.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +472,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +502,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,6 +632,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		88C69CCE2A5F00B100DE5C30 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "http://github.com/pointfreeco/swift-composable-architecture#Installation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.0;
+			};
+		};
+		88C69CD12A5F00CB00DE5C30 /* XCRemoteSwiftPackageReference "q20kshare" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/billdonner/q20kshare";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.15;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		88C69CCF2A5F00B100DE5C30 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88C69CCE2A5F00B100DE5C30 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		88C69CD22A5F00CB00DE5C30 /* q20kshare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88C69CD12A5F00CB00DE5C30 /* XCRemoteSwiftPackageReference "q20kshare" */;
+			productName = q20kshare;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 88C69C872A5EFEDE00DE5C30 /* Project object */;
 }
