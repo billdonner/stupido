@@ -14,15 +14,16 @@ struct stupidoApp: App {
   static let scoreDatum = ScoreDatum()
   
   static let challengeStore = Store(initialState: ChallengeFeature.State()) {
-    ChallengeFeature(scoreDatum: scoreDatum, ch: SampleData.challenge, idx: 1)._printChanges()
+    ChallengeFeature()._printChanges()
   }
   static let topicStore = Store(initialState: TopicsFeature.State()) {
-    TopicsFeature(scoreDatum: scoreDatum)//._printChanges()
+    TopicsFeature()//._printChanges()
   }
 
   var body: some Scene {
     WindowGroup {
       //ChallengeView(challengeStore: tcaqaApp.challengeStore, scoreDatum: tcaqaApp.scoreDatum, challenge: SampleData.challenge, questionNumber: 456, questionMax: 999)
+      let _ = print("Stupido is running")
       TopicsView(topicsStore:stupidoApp.topicStore, scoreDatum: ScoreDatum.reloadOrInit())
     }
   }

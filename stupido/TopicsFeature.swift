@@ -9,12 +9,9 @@ import ComposableArchitecture
 import SwiftUI
 import q20kshare
 
-
-
-
 struct TopicsView: View {
   let topicsStore:StoreOf<TopicsFeature>
-  @StateObject var  scoreDatum:ScoreDatum
+  let scoreDatum:ScoreDatum
   var body: some View {
     WithViewStore(self.topicsStore,observe:{$0}){viewStore in
       VStack {
@@ -52,14 +49,14 @@ struct TopicsPreview: PreviewProvider {
     let sd =  ScoreDatum()
     TopicsView(
       topicsStore: Store(initialState: TopicsFeature.State()) {
-        TopicsFeature(scoreDatum:sd)
+        TopicsFeature()
       }, scoreDatum: sd
     )
   }
 }
 
 struct TopicsFeature: ReducerProtocol {
-   let scoreDatum: ScoreDatum
+   //let scoreDatum: ScoreDatum
   struct State:Equatable {
     static func == (lhs: TopicsFeature.State, rhs: TopicsFeature.State) -> Bool {
        lhs.gameDatum == rhs.gameDatum
@@ -68,6 +65,7 @@ struct TopicsFeature: ReducerProtocol {
     var isLoading = false
     var gameDatum : [GameData] = []
   }
+  
   enum Action {
     case reloadButtonTapped
     case reloadButtonResponse([GameData])
@@ -78,7 +76,8 @@ struct TopicsFeature: ReducerProtocol {
     case let .reloadButtonResponse(gameData):
         state.gameDatum = gameData
         state.isLoading = false
-        scoreDatum.setScoresFromGameData(gameData)
+        // scoreDatum.setScoresFromGameData(gameData)
+      print("Data loaded \(gameData.count) topics")
         return .none
       
     case .reloadButtonTapped: if !state.isLoading {

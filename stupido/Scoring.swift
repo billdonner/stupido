@@ -9,7 +9,7 @@ import Foundation
 import q20kshare
 
 
-class ScoreDatum : ObservableObject {
+struct ScoreDatum  {
   enum ChallengeOutcomes :Codable {
     case unplayed
     case playedCorrectly
@@ -25,7 +25,8 @@ class ScoreDatum : ObservableObject {
     self.scoresByTopic = scoresByTopic
   }
   // this is the only real data up here
-  @Published var scoresByTopic = [String:ScoreData]()
+ // @Published
+  var scoresByTopic = [String:ScoreData]()
   
   // computed
   var grandScore : Int {
@@ -62,7 +63,7 @@ class ScoreDatum : ObservableObject {
     return ScoreDatum()
   }
   
-  func adjustScoresForTopic(_ topic:String,idx:Int, outcome:ChallengeOutcomes,by n:Int=1) {
+  mutating func adjustScoresForTopic(_ topic:String,idx:Int, outcome:ChallengeOutcomes,by n:Int=1) {
     let x = scoresByTopic[topic]
     guard let x = x else {return}
     var cha = x.challengeScores
@@ -76,7 +77,7 @@ class ScoreDatum : ObservableObject {
     save()
     
   }
-  func setScoresFromGameData(_ gameData:[GameData]) {
+  mutating func setScoresFromGameData(_ gameData:[GameData]) {
     scoresByTopic = [:]
     for gd in gameData {
       scoresByTopic[gd.subject]=ScoreData(topic:gd.subject,
