@@ -9,13 +9,13 @@ import Foundation
 import q20kshare
 
 
-struct ScoreDatum  {
-  enum ChallengeOutcomes :Codable {
+struct ScoreDatum :Equatable {
+  enum ChallengeOutcomes :Codable ,Equatable{
     case unplayed
     case playedCorrectly
     case playedIncorrectly
   }
-  struct ScoreData : Codable {
+  struct ScoreData : Codable,Equatable {
     let topic:String
     let topicScore:Int
     let challengeScores:[ChallengeOutcomes]

@@ -4,44 +4,46 @@ import q20kshare
 
 struct ChallengeView: View {
   
-  struct ViewState: Equatable {
-
-     let challenge: Challenge
+  struct ChallengeViewState: Equatable {
+    let challenge: Challenge
     let showing: ChallengeFeature.State.Showing
     let timerCount: Int
-    // let unreadActivityCount: Int
+    let questionNumber:Int
+    let questionMax:Int
+    let sd:ScoreDatum
+    
      init(state: ChallengeFeature.State) {
        self.challenge = state.challenge
        self.showing = state.showing
        self.timerCount = state.timerCount
-      // self.unreadActivityCount = state.activity.unreadCount
+       self.questionMax = state.questionMax
+       self.questionNumber = state.questionNumber
+       self.sd = state.scoreDatum
      }
    }
   
   let challengeStore:StoreOf<ChallengeFeature>
-  let scoreDatum:ScoreDatum
-  let questionNumber:Int
-  let questionMax:Int
+
   var body: some View {
     //, removeDuplicates :==
-    WithViewStore(challengeStore,observe: ViewState.init  ){viewStore in
+    WithViewStore(challengeStore,observe: ChallengeViewState.init  ){viewStore in
     VStack{
         //let _ = print (viewStore.timerCount)
       let challenge = viewStore.challenge
         VStack {
           HStack {
-            Text("Grand Score \(scoreDatum.grandScore)")
+            Text("Grand Score \(viewStore.sd.grandScore)")
             Spacer()
-            Text("\(viewStore.state.timerCount)")
+            Text("\(viewStore.timerCount)")
             Spacer( )
-            Text("Topic Score  \( scoreDatum.scoresByTopic[  challenge.topic]?.topicScore ?? 0)")
+            Text("Topic Score  \( viewStore.sd.scoresByTopic[  challenge.topic]?.topicScore ?? 0)")
           }.font(.footnote).padding(.horizontal)
         }
         Group {
           
           VStack {
             HStack {
-              Text("Question \(questionNumber)" + "/" + "\(questionMax)")
+              Text("Question \(viewStore.questionNumber)" + "/" + "\(viewStore.questionMax)")
               Spacer()
               Text("Topic \( challenge.topic)")
             }.font(.footnote)
@@ -72,13 +74,11 @@ struct ChallengeView: View {
           }
         } .font(.largeTitle)
         Spacer()
-          switch viewStore.state.showing {
+      switch viewStore.showing {
           case .qanda:
-           // Button("Hint"){
-              //viewStore.send(.hintButtonTapped)
-           // }
-            //break
-            Text("Hint:" + challenge.hint).font(.headline)
+            Button("Hint"){
+              viewStore.send(.hintButtonTapped)
+            }
           case .hint:
             Text("Hint:" + challenge.hint).font(.headline)
           case .answerWasCorrect:
@@ -104,7 +104,7 @@ struct ChallengeView: View {
             viewStore.send(.thumbsDownButtonTapped)
           } label: {
             Image(systemName: "hand.thumbsdown")
-          }.disabled(viewStore.state.showing == .hint || viewStore.state.showing == .qanda)
+          }.disabled(viewStore.showing == .hint || viewStore.showing == .qanda)
           Spacer()
           Button{
             viewStore.send(.infoButtonTapped)
@@ -116,7 +116,7 @@ struct ChallengeView: View {
             viewStore.send(.thumbsUpButtonTapped)
           } label: {
             Image(systemName: "hand.thumbsup")
-          }.disabled(viewStore.state.showing == .hint || viewStore.state.showing == .qanda)
+          }.disabled(viewStore.showing == .hint || viewStore.showing == .qanda)
         }.font(.title)
           .padding([.horizontal,.bottom])
       }.task {
@@ -128,22 +128,15 @@ struct ChallengeView: View {
 }
 
 struct ChallengeView_Previews: PreviewProvider {
-
-  
   static var previews: some View {
-    let scoreDatum = ScoreDatum()
     ChallengeView(challengeStore: Store(initialState:ChallengeFeature.State( )){
       ChallengeFeature( )
-    }, scoreDatum: scoreDatum,
-                  questionNumber: 1,
-                  questionMax: 456)
+    }
+                 )
   }
 }
 struct ChallengeFeature: ReducerProtocol {
-//  let scoreDatum: ScoreDatum
-//  let ch:Challenge
-//  let idx:Int
-  
+
   
   struct State :Equatable{
     static func == (lhs: ChallengeFeature.State, rhs: ChallengeFeature.State) -> Bool {
@@ -157,15 +150,17 @@ struct ChallengeFeature: ReducerProtocol {
       case answerWasCorrect
       case answerWasIncorrect
     }
-    
+    var scoreDatum=ScoreDatum()
     var challenge:Challenge = SampleData.challenge
-    var idx:Int = 0
+
+    var questionNumber:Int = 0
+    var questionMax:Int = 0
     var showing:Showing = .qanda
     var isTimerRunning = false
     var timerCount = 0
-//    var topic : String {
-//      challenge.topic
-//    }
+    var topic : String {
+      challenge.topic
+    }
     
   }// end of state
   enum CancelID { case timer }
@@ -185,8 +180,8 @@ struct ChallengeFeature: ReducerProtocol {
   func reduce(into state:inout State,action:Action)->EffectTask<Action> {
     // fix up scores
     func updata(_ t:Bool) {
-//     let oc =  t ? ScoreDatum.ChallengeOutcomes.playedCorrectly : .playedIncorrectly
-////      state.scoreDatum.adjustScoresForTopic( state.challenge.topic, idx: 999, outcome:oc)
+      let oc =  t ? ScoreDatum.ChallengeOutcomes.playedCorrectly : .playedIncorrectly
+      state.scoreDatum.adjustScoresForTopic( state.challenge.topic, idx: 999, outcome:oc)
       state.showing = t ? .answerWasCorrect : .answerWasIncorrect
       state.isTimerRunning = false
     }
@@ -206,13 +201,15 @@ struct ChallengeFeature: ReducerProtocol {
     case .answer5ButtonTapped:
       updata( state.challenge.correct == state.challenge.answers[4])
       return .cancel(id: CancelID.timer)
+      
     case .hintButtonTapped:
       if state.showing == .qanda {state.showing = .hint} // dont stop timer
-    case .infoButtonTapped: break
-    case .thumbsUpButtonTapped: break
-    case .thumbsDownButtonTapped: break
+      return .none
+      
     case .timeTick:
       state.timerCount += 1
+      return .none
+      
     case .virtualTimerButtonTapped:
       state.isTimerRunning.toggle()
       if state.isTimerRunning {
@@ -226,7 +223,13 @@ struct ChallengeFeature: ReducerProtocol {
       } else {
         return .cancel(id: CancelID.timer)
       }
+      
+    case .infoButtonTapped:    return .none
+      
+    case .thumbsUpButtonTapped:    return .none
+      
+    case .thumbsDownButtonTapped:    return .none
+      
     }
-    return .none // most cases end here
   }
 }

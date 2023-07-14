@@ -10,18 +10,32 @@ import SwiftUI
 import q20kshare
 
 struct TopicsView: View {
+  
+  struct ViewState: Equatable {
+    var sd:ScoreDatum
+    let gameDatum:[GameData]
+    let isLoading:Bool
+    
+     init(state: TopicsFeature.State) {
+       self.sd = state.scoreDatum
+       self.gameDatum = state.gameDatum
+       self.isLoading = state.isLoading
+     }
+   }
+  
+  
   let topicsStore:StoreOf<TopicsFeature>
-  let scoreDatum:ScoreDatum
+
   var body: some View {
-    WithViewStore(self.topicsStore,observe:{$0}){viewStore in
+    WithViewStore( topicsStore,observe:ViewState.init){viewStore in
       VStack {
-        Text("Total Score Across Topics: \(scoreDatum.grandScore)")
+        Text("Total Score Across Topics: \(viewStore.sd.grandScore)")
         Text("Topics: \(viewStore.gameDatum.count)")
         Text("Challenges: \(viewStore.gameDatum.map {$0.challenges.count}.reduce(0,+))")
         
         ForEach (viewStore.gameDatum){ gameData in
-          let score = scoreDatum.scoresByTopic[gameData.subject]?.topicScore ?? -1
-          let hwm = scoreDatum.scoresByTopic[gameData.subject]?.highWaterMark ?? -1
+          let score = viewStore.sd.scoresByTopic[gameData.subject]?.topicScore ?? -1
+          let hwm = viewStore.sd.scoresByTopic[gameData.subject]?.highWaterMark ?? -1
           let h = hwm == -1 ? "unplayed of" : "\(hwm)"
           HStack {
             Text("score \(score)").font(.footnote)
@@ -46,11 +60,10 @@ struct TopicsView: View {
 }
 struct TopicsPreview: PreviewProvider {
   static var previews: some View {
-    let sd =  ScoreDatum()
     TopicsView(
       topicsStore: Store(initialState: TopicsFeature.State()) {
         TopicsFeature()
-      }, scoreDatum: sd
+      }
     )
   }
 }
@@ -64,6 +77,7 @@ struct TopicsFeature: ReducerProtocol {
     
     var isLoading = false
     var gameDatum : [GameData] = []
+    var scoreDatum =  ScoreDatum.reloadOrInit ()
   }
   
   enum Action {
@@ -76,7 +90,7 @@ struct TopicsFeature: ReducerProtocol {
     case let .reloadButtonResponse(gameData):
         state.gameDatum = gameData
         state.isLoading = false
-        // scoreDatum.setScoresFromGameData(gameData)
+        state.scoreDatum.setScoresFromGameData(gameData)
       print("Data loaded \(gameData.count) topics")
         return .none
       

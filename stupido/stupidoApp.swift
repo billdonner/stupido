@@ -22,9 +22,10 @@ struct stupidoApp: App {
 
   var body: some Scene {
     WindowGroup {
-      //ChallengeView(challengeStore: tcaqaApp.challengeStore, scoreDatum: tcaqaApp.scoreDatum, challenge: SampleData.challenge, questionNumber: 456, questionMax: 999)
-      let _ = print("Stupido is running")
-      TopicsView(topicsStore:stupidoApp.topicStore, scoreDatum: ScoreDatum.reloadOrInit())
+      
+       let _ = print("Stupido is running")
+      ChallengeView(challengeStore: Self.challengeStore,questionNumber: 456, questionMax: 999)
+      //TopicsView(topicsStore:stupidoApp.topicStore)
     }
   }
 }
