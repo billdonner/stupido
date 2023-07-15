@@ -8,14 +8,189 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BCA843C1-6A5D-46CC-9130-DFA2D97A8CD8"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "stupido/ChallengeFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "reduce(into:action:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BCA843C1-6A5D-46CC-9130-DFA2D97A8CD8 - adba791de65086f8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "stupido.ChallengeFeature.reduce(into: inout stupido.ChallengeFeature.State, action: stupido.ChallengeFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.ChallengeFeature.Action, Swift.Never&gt;"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/ChallengeFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "880">
+               </Location>
+               <Location
+                  uuid = "BCA843C1-6A5D-46CC-9130-DFA2D97A8CD8 - adba791de650811f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "stupido.ChallengeFeature.reduce(into: inout stupido.ChallengeFeature.State, action: stupido.ChallengeFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.ChallengeFeature.Action, Swift.Never&gt;"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/ChallengeFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "265"
+                  endingLineNumber = "265"
+                  offsetFromSymbolStart = "1004">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "137EE8D3-B0D7-45CE-BC93-09076A5E1BA9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/ChallengeFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "reduce(into:action:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "137EE8D3-B0D7-45CE-BC93-09076A5E1BA9 - adba791de6508036"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "stupido.ChallengeFeature.reduce(into: inout stupido.ChallengeFeature.State, action: stupido.ChallengeFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.ChallengeFeature.Action, Swift.Never&gt;"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/ChallengeFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "768">
+               </Location>
+               <Location
+                  uuid = "137EE8D3-B0D7-45CE-BC93-09076A5E1BA9 - adba791de6508036"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "stupido.ChallengeFeature.reduce(into: inout stupido.ChallengeFeature.State, action: stupido.ChallengeFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.ChallengeFeature.Action, Swift.Never&gt;"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/ChallengeFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "896">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "817DC632-DC3B-4E46-991A-E05919A4A2FB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/ =.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "updata(_:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A01DEB08-2192-4946-A4E1-741F58024E44"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/Scoring.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "adjustScoresForTopic(_:idx:outcome:by:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A01DEB08-2192-4946-A4E1-741F58024E44 - 6c68250b41c498b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 3 of stupido.ScoreDatum.adjustScoresForTopic(_: Swift.String, idx: Swift.Int, outcome: stupido.ScoreDatum.ChallengeOutcomes, by: Swift.Int) -&gt; ()"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/Scoring.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "8">
+               </Location>
+               <Location
+                  uuid = "A01DEB08-2192-4946-A4E1-741F58024E44 - b6b7a0b26deb0c39"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "stupido.ScoreDatum.adjustScoresForTopic(_: Swift.String, idx: Swift.Int, outcome: stupido.ScoreDatum.ChallengeOutcomes, by: Swift.Int) -&gt; ()"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/Scoring.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "A01DEB08-2192-4946-A4E1-741F58024E44 - b6b7a0b26deb0c5a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "stupido.ScoreDatum.adjustScoresForTopic(_: Swift.String, idx: Swift.Int, outcome: stupido.ScoreDatum.ChallengeOutcomes, by: Swift.Int) -&gt; ()"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/Scoring.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "168">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D1FA4C8-69F3-4F74-AD9F-C2E5F27540BC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/TopicsFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "reduce(into:action:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,17 +198,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "137EE8D3-B0D7-45CE-BC93-09076A5E1BA9"
+            uuid = "A5B10110-D637-4D68-AF12-6108E008E48C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "stupido/ChallengeFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "reduce(into:action:)"
-            landmarkType = "7">
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "updata(_:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

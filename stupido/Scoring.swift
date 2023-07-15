@@ -19,8 +19,7 @@ struct ScoreDatum :Equatable {
     let topic:String
     let topicScore:Int
     let highWaterMark:Int
-    
-    let challengeScores:[ChallengeOutcomes]
+    let outcomes:[ChallengeOutcomes]
   }
   internal init(scoresByTopic: [String : ScoreData] = [String:ScoreData]()) {
     self.scoresByTopic = scoresByTopic
@@ -67,13 +66,13 @@ struct ScoreDatum :Equatable {
   mutating func adjustScoresForTopic(_ topic:String,idx:Int, outcome:ChallengeOutcomes,by n:Int=1) {
     let x = scoresByTopic[topic]
     guard let x = x else {return}
-    var cha = x.challengeScores
+    var cha = x.outcomes
     cha[idx] = outcome
     var hwm = x.highWaterMark
     if idx >  x.highWaterMark  { hwm  = idx }
     scoresByTopic[topic] = ScoreData(topic:topic,
                                      topicScore: x.topicScore + n,
-                                     highWaterMark : hwm, challengeScores:cha)
+                                     highWaterMark : hwm, outcomes:cha)
     save()
     
   }
@@ -83,8 +82,8 @@ struct ScoreDatum :Equatable {
       scoresByTopic[gd.subject]=ScoreData(topic:gd.subject,
                                           topicScore: 0,
                                           highWaterMark:-1,
-                                          challengeScores:Array(repeating: ChallengeOutcomes.unplayed,
-                                                                                  count: gd.challenges.count))
+                                          outcomes:Array(repeating: ChallengeOutcomes.unplayed,
+                                            count: gd.challenges.count))
     }
     save()
   }

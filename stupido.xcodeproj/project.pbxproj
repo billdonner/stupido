@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		887E866E2A63514200CE8EF9 /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887E866D2A63514200CE8EF9 /* ChallengeView.swift */; };
 		88C69C932A5EFEDE00DE5C30 /* stupidoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */; };
 		88C69C972A5EFEE000DE5C30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C69C962A5EFEE000DE5C30 /* Assets.xcassets */; };
 		88C69C9A2A5EFEE000DE5C30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C69C992A5EFEE000DE5C30 /* Preview Assets.xcassets */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		887E866D2A63514200CE8EF9 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
 		88C69C8F2A5EFEDE00DE5C30 /* stupido.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stupido.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stupidoApp.swift; sourceTree = "<group>"; };
 		88C69C962A5EFEE000DE5C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */,
 				88C69CD42A5F05A800DE5C30 /* Data.swift */,
 				88C69CC12A5EFF3D00DE5C30 /* ChallengeFeature.swift */,
+				887E866D2A63514200CE8EF9 /* ChallengeView.swift */,
 				88C69CC02A5EFF3D00DE5C30 /* ChallengeFeatureTests.swift */,
 				88C69CBC2A5EFF3D00DE5C30 /* Scoring.swift */,
 				88C69CBD2A5EFF3D00DE5C30 /* Subs.swift */,
@@ -292,6 +295,7 @@
 				88C69CCC2A5EFF3D00DE5C30 /* ChallengeFeature.swift in Sources */,
 				88C69CD52A5F05A800DE5C30 /* Data.swift in Sources */,
 				88C69C932A5EFEDE00DE5C30 /* stupidoApp.swift in Sources */,
+				887E866E2A63514200CE8EF9 /* ChallengeView.swift in Sources */,
 				88C69CC42A5EFF3D00DE5C30 /* Subs.swift in Sources */,
 				88C69CC82A5EFF3D00DE5C30 /* TopicsFeature.swift in Sources */,
 				88C69CC22A5EFF3D00DE5C30 /* Scoring.swift in Sources */,
