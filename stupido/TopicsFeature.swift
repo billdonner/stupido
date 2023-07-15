@@ -11,7 +11,7 @@ import q20kshare
 
 struct TopicsView: View {
   
-  struct ViewState: Equatable {
+  struct TopicsViewState: Equatable {
     var sd:ScoreDatum
     let gameDatum:[GameData]
     let isLoading:Bool
@@ -27,7 +27,7 @@ struct TopicsView: View {
   let topicsStore:StoreOf<TopicsFeature>
 
   var body: some View {
-    WithViewStore( topicsStore,observe:ViewState.init){viewStore in
+    WithViewStore( topicsStore,observe:TopicsViewState.init){viewStore in
       VStack {
         Text("Total Score Across Topics: \(viewStore.sd.grandScore)")
         Text("Topics: \(viewStore.gameDatum.count)")

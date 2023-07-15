@@ -27,7 +27,7 @@ struct ChallengeFeature: ReducerProtocol {
     var topic : String {
       challenges[questionNumber].topic
     }
-    var unplayedMessage : String? = nil
+    var once = false 
     
   }// end of state
   enum CancelID { case timer }
@@ -45,6 +45,7 @@ struct ChallengeFeature: ReducerProtocol {
     case thumbsDownButtonTapped
     case timeTick
     case virtualTimerButtonTapped
+    case onceOnlyVirtualyTapped
   }
   fileprivate func startTimer(_ state: inout ChallengeFeature.State) -> EffectTask<ChallengeFeature.Action> {
     state.isTimerRunning = true 
@@ -64,8 +65,8 @@ struct ChallengeFeature: ReducerProtocol {
   func reduce(into state:inout State,action:Action)->EffectTask<Action> {
     // fix up scores
     func updata(_ idx:Int) {
-    let t =  state.challenges[state.questionNumber].correct == state.challenges[state.questionNumber].answers[idx]
-       
+      let t =  state.challenges[state.questionNumber].correct == state.challenges[state.questionNumber].answers[idx]
+      
       let oc =  t ? ScoreDatum.ChallengeOutcomes.playedCorrectly : .playedIncorrectly
       // if unplayed
       if state.outcomes [state.questionNumber] == .unplayed {
@@ -77,6 +78,7 @@ struct ChallengeFeature: ReducerProtocol {
         }
       }
       state.showing = t ? .answerWasCorrect : .answerWasIncorrect
+      state.once = false
       state.isTimerRunning = false
     }
     switch action {
@@ -118,6 +120,7 @@ struct ChallengeFeature: ReducerProtocol {
         state.questionNumber += 1
         state.timerCount = 0
         state.showing = .qanda
+        state.once = true
         return startTimer(&state)
         
       }
@@ -128,10 +131,18 @@ struct ChallengeFeature: ReducerProtocol {
         state.questionNumber -= 1
         state.timerCount = 0
         state.showing = .qanda
+        state.once = true
         return startTimer(&state)
       }
       return .none
       
+      
+    case .onceOnlyVirtualyTapped:
+      state.questionNumber = 0
+      state.timerCount = 0
+      state.showing = .qanda
+      state.once = true
+      return startTimer(&state)
     }
   }
 }

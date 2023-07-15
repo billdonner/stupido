@@ -48,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		887E866D2A63514200CE8EF9 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
+		887E866F2A63665600CE8EF9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		88C69C8F2A5EFEDE00DE5C30 /* stupido.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stupido.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stupidoApp.swift; sourceTree = "<group>"; };
 		88C69C962A5EFEE000DE5C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 		88C69C862A5EFEDE00DE5C30 = {
 			isa = PBXGroup;
 			children = (
+				887E866F2A63665600CE8EF9 /* README.md */,
 				88C69C912A5EFEDE00DE5C30 /* stupido */,
 				88C69CA22A5EFEE000DE5C30 /* stupidoTests */,
 				88C69CAC2A5EFEE000DE5C30 /* stupidoUITests */,
@@ -118,8 +120,8 @@
 				88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */,
 				88C69CD42A5F05A800DE5C30 /* Data.swift */,
 				88C69CC12A5EFF3D00DE5C30 /* ChallengeFeature.swift */,
-				887E866D2A63514200CE8EF9 /* ChallengeView.swift */,
 				88C69CC02A5EFF3D00DE5C30 /* ChallengeFeatureTests.swift */,
+				887E866D2A63514200CE8EF9 /* ChallengeView.swift */,
 				88C69CBC2A5EFF3D00DE5C30 /* Scoring.swift */,
 				88C69CBD2A5EFF3D00DE5C30 /* Subs.swift */,
 				88C69CBF2A5EFF3D00DE5C30 /* TopicsFeature.swift */,
@@ -481,7 +483,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.billdonner.stupido;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -511,7 +513,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.billdonner.stupido;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

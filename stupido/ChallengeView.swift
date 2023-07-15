@@ -9,14 +9,6 @@ import ComposableArchitecture
 import SwiftUI
 import q20kshare
 
-func timeStringFor(seconds : Int) -> String
-{
-  let formatter = DateComponentsFormatter()
-  formatter.allowedUnits = [.second, .minute, .hour]
-  formatter.zeroFormattingBehavior = .pad
-  let output = formatter.string(from: TimeInterval(seconds))!
-  return seconds < 3600 ? String(output[output.firstIndex(of: ":")!..<output.endIndex]) : output
-}
 
 
   struct ChallengeViewState: Equatable {
@@ -26,10 +18,10 @@ func timeStringFor(seconds : Int) -> String
     let timerCount: Int
     let questionNumber:Int
     let questionMax:Int
-    let sd:ScoreDatum
+    let scoreDatum:ScoreDatum
     let thisChallenge:Challenge
     let thisOutcome: ScoreDatum.ChallengeOutcomes
-    var unplayedMessage: String?
+    var once: Bool
 
     
      init(state: ChallengeFeature.State) {
@@ -40,41 +32,47 @@ func timeStringFor(seconds : Int) -> String
        self.timerCount = state.timerCount
        self.questionMax = state.challenges.count - 1
        self.questionNumber = state.questionNumber
-       self.sd = state.scoreDatum
+       self.scoreDatum = state.scoreDatum
        self.thisChallenge = state.challenges[state.questionNumber]
        self.thisOutcome = state .outcomes[state.questionNumber]
-       self.unplayedMessage = state.unplayedMessage
+       self.once = state.once
      }
    }
   
-struct ChallengeView: View {
-  
+struct ChallengeView: View { 
   let challengeStore:StoreOf<ChallengeFeature>
-  @State var unplayedMessage : String? = nil
- 
-
   var body: some View {
     //, removeDuplicates :==
     WithViewStore(challengeStore,observe: ChallengeViewState.init  ){viewStore in
       let tc = viewStore.thisChallenge
+
+      
     VStack{
-        //let _ = print (viewStore.timerCount)
-     // let challenges = viewStore.challenges
         VStack {
           HStack {
-            Text("Grand Score \(viewStore.sd.grandScore)")
+            Text("Grand Score \(viewStore.scoreDatum.grandScore)")
             Spacer()
             Text("\(timeStringFor(seconds:viewStore.timerCount))")
             Spacer( )
-            Text("Topic Score  \( viewStore.sd.scoresByTopic[  tc.topic]?.topicScore ?? 0)")
+            Text("Topic Score  \( viewStore.scoreDatum.scoresByTopic[  tc.topic]?.topicScore ?? 0)")
           }.font(.footnote).padding(.horizontal)
         }
         Group {
           
           VStack {
-            if  let msg = unplayedMessage   {
-              Text (msg).font(.caption)
+            if viewStore.once {
+              if  viewStore.outcomes [viewStore.questionNumber] != .unplayed
+              {
+                Text ("You've already played this so we won't score your answer").font(.caption)
+              }
+            else {
+              Text ("You've never played this.").font(.caption)
             }
+            } else {
+              //Text("DIAG - viewStore.once is false").font(.caption)
+              EmptyView()
+            }
+          }
             HStack {
               Text("Question \(viewStore.questionNumber)" + "/" + "\(viewStore.questionMax)")
               Spacer()
@@ -84,23 +82,31 @@ struct ChallengeView: View {
           }
           .borderedStyleStrong(.gray)
           .padding()
-      
+      // ensure we never go out of bounds regardless of how many answers
           if tc.answers.count>0 {
-            Button(tc.answers[0]){viewStore.send(.answer1ButtonTapped)}
+            Button(tc.answers[0])
+            {viewStore.send(.answer1ButtonTapped)}
           }
           if tc.answers.count>1 {
-            Button(tc.answers[1]){viewStore.send(.answer2ButtonTapped)}
+            Button(tc.answers[1])
+            {viewStore.send(.answer2ButtonTapped)}
           }
           if tc.answers.count>2 {
-            Button(tc.answers[2]){viewStore.send(.answer3ButtonTapped)}
+            Button(tc.answers[2])
+            {viewStore.send(.answer3ButtonTapped)}
           }
           if tc.answers.count>3 {
-            Button(tc.answers[3]){viewStore.send(.answer4ButtonTapped)}
+            Button(tc.answers[3])
+            {viewStore.send(.answer4ButtonTapped)}
           }
           if tc.answers.count>4 {
-            Button(tc.answers[4]){viewStore.send(.answer5ButtonTapped)}
+            Button(tc.answers[4])
+            {viewStore.send(.answer5ButtonTapped)}
           }
         } .font(.largeTitle) .borderedStyle(.gray)
+        .task{
+          viewStore.send(.onceOnlyVirtualyTapped)
+        }
         Spacer()
       switch viewStore.showing {
           case .qanda:
@@ -113,8 +119,7 @@ struct ChallengeView: View {
             Text("Answer: " + tc.correct).font(.title)
               .borderedStyleStrong( .green)
             if tc.opinions.count > 0 {
-              let explanation = tc.opinions[0].explanation
-              Text(explanation)
+              Text(tc.opinions[0].explanation)
                 .borderedStyleStrong(.green)
             }
           case .answerWasIncorrect:
@@ -126,13 +131,15 @@ struct ChallengeView: View {
                 .borderedStyleStrong( .red)
             }
           }
-     
+     Spacer()
         HStack {
           Button {
             viewStore.send(.previousButtonTapped)
           } label: {
             Image(systemName: "arrow.left")
           }.disabled(viewStore.questionNumber <= 0)
+          
+          Spacer()
           Button {
             viewStore.send(.thumbsDownButtonTapped)
           } label: {
@@ -150,6 +157,8 @@ struct ChallengeView: View {
           } label: {
             Image(systemName: "hand.thumbsup")
           }.disabled(viewStore.showing == .hint || viewStore.showing == .qanda)
+          
+          Spacer()
           Button {
             viewStore.send(.nextButtonTapped)
           } label: {
@@ -157,17 +166,9 @@ struct ChallengeView: View {
           }.disabled(viewStore.questionNumber >= viewStore.questionMax)
         }.font(.title)
           .padding([.horizontal,.bottom])
-      }.task {
-        // run once
-        if viewStore.thisOutcome != .unplayed {
-          unplayedMessage = "You have already played this... "
- 
-        }
-        viewStore.send(.virtualTimerButtonTapped)
       }
     }
   }
-}
 
 struct ChallengeView_Previews: PreviewProvider {
   static var previews: some View {

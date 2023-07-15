@@ -6,6 +6,18 @@
 //
 
 import SwiftUI
+
+let formatter = DateComponentsFormatter()
+func timeStringFor(seconds : Int) -> String
+{
+  formatter.allowedUnits = [.second, .minute, .hour]
+  formatter.zeroFormattingBehavior = .pad
+  let output = formatter.string(from: TimeInterval(seconds))!
+  let x =  seconds < 3600 ? String(output[output.firstIndex(of: ":")!..<output.endIndex]) : output
+  return String(x.trimmingCharacters(in: .whitespaces).dropFirst())
+}
+
+
 struct Bordered: ViewModifier {
   let opacity: Double
   let color:Color
