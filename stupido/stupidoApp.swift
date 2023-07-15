@@ -11,20 +11,20 @@ import q20kshare
 
 @main
 struct stupidoApp: App {
-  static let scoreDatum = ScoreDatum()
+  //static let scoreDatum = ScoreDatum()
   
-  static let challengeStore = Store(initialState: ChallengeFeature.State()) {
-    ChallengeFeature()._printChanges()
-  }
+  static let challengeStore =     Store(initialState:ChallengeFeature.State( scoreDatum: ScoreDatum(),
+                                                                             challenges:[SampleData.challenge1,
+                                                                                         SampleData.challenge2],    questionNumber:0, questionMax:1 ))
+  {  ChallengeFeature( )  }
   static let topicStore = Store(initialState: TopicsFeature.State()) {
     TopicsFeature()//._printChanges()
   }
-
+  
   var body: some Scene {
     WindowGroup {
-      
-       let _ = print("Stupido is running")
-      ChallengeView(challengeStore: Self.challengeStore,questionNumber: 456, questionMax: 999)
+      let _ = print("Stupido is running")
+      ChallengeView(challengeStore: Self.challengeStore)
       //TopicsView(topicsStore:stupidoApp.topicStore)
     }
   }

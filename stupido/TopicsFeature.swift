@@ -75,6 +75,8 @@ struct TopicsFeature: ReducerProtocol {
        lhs.gameDatum == rhs.gameDatum
     }
     
+   // var topicScore = 0
+   // var highWaterMark = -1
     var isLoading = false
     var gameDatum : [GameData] = []
     var scoreDatum =  ScoreDatum.reloadOrInit ()
