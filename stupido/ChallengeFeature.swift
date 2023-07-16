@@ -18,6 +18,9 @@ struct ChallengeFeature: ReducerProtocol {
     var scoreDatum=ScoreDatum()
     var challenges:[Challenge] = []
     var outcomes:[ScoreDatum.ChallengeOutcomes] = []
+    var topicScore: Int {
+      outcomes.reduce(0) { $0 + ($1 == .playedCorrectly ? 1 : 0)}
+    }
 
     var questionNumber:Int = 0
     var questionMax:Int { challenges.count }
@@ -109,11 +112,6 @@ struct ChallengeFeature: ReducerProtocol {
     case .virtualTimerButtonTapped:
       return startTimer(&state)
       
-    case .infoButtonTapped:    return .none
-      
-    case .thumbsUpButtonTapped:    return .none
-      
-    case .thumbsDownButtonTapped:    return .none
       
     case .nextButtonTapped:
       if state.questionNumber < state.questionMax {
@@ -143,6 +141,13 @@ struct ChallengeFeature: ReducerProtocol {
       state.showing = .qanda
       state.once = true
       return startTimer(&state)
+      
+      // these buttons present sheets
+    case .infoButtonTapped:    return .none
+      
+    case .thumbsUpButtonTapped:    return .none
+      
+    case .thumbsDownButtonTapped:    return .none
     }
   }
 }

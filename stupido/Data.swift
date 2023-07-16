@@ -9,9 +9,9 @@ import q20kshare
 
 
 struct SampleData { 
-  static let outcomes:[ScoreDatum.ChallengeOutcomes] = [.unplayed,.unplayed]
+  static let outcomes:[ScoreDatum.ChallengeOutcomes] = [.playedCorrectly,.unplayed]
   
-  static let scoresByTopic =  ["Nature":ScoreDatum.ScoreData(topic:"Nature",topicScore: 0,highWaterMark: -1,outcomes: outcomes)]
+  static let scoresByTopic =  ["Nature":ScoreDatum.ScoreData(topic:"Nature",topicScore: 1,highWaterMark: -1,outcomes: outcomes)]
   
   static let scoreDatum = ScoreDatum(scoresByTopic:scoresByTopic)
   

@@ -9,8 +9,6 @@ import ComposableArchitecture
 import SwiftUI
 import q20kshare
 
-
-
   struct ChallengeViewState: Equatable {
     let challenges: [Challenge]
     let outcomes:[ScoreDatum.ChallengeOutcomes]
@@ -21,9 +19,9 @@ import q20kshare
     let scoreDatum:ScoreDatum
     let thisChallenge:Challenge
     let thisOutcome: ScoreDatum.ChallengeOutcomes
+    var topicScore:Int
     var once: Bool
-
-    
+ 
      init(state: ChallengeFeature.State) {
        self.challenges = state.challenges
        self.outcomes = state.outcomes
@@ -35,6 +33,7 @@ import q20kshare
        self.scoreDatum = state.scoreDatum
        self.thisChallenge = state.challenges[state.questionNumber]
        self.thisOutcome = state .outcomes[state.questionNumber]
+       self.topicScore = state.topicScore
        self.once = state.once
      }
    }
@@ -45,8 +44,7 @@ struct ChallengeView: View {
     //, removeDuplicates :==
     WithViewStore(challengeStore,observe: ChallengeViewState.init  ){viewStore in
       let tc = viewStore.thisChallenge
-
-      
+ 
     VStack{
         VStack {
           HStack {
@@ -54,7 +52,7 @@ struct ChallengeView: View {
             Spacer()
             Text("\(timeStringFor(seconds:viewStore.timerCount))")
             Spacer( )
-            Text("Topic Score  \( viewStore.scoreDatum.scoresByTopic[  tc.topic]?.topicScore ?? 0)")
+            Text("Topic Score  \( viewStore.topicScore) ")
           }.font(.footnote).padding(.horizontal)
         }
         Group {
@@ -132,6 +130,8 @@ struct ChallengeView: View {
             }
           }
      Spacer()
+      ExpertiseView (outcomes:viewStore.outcomes)
+        .padding()
         HStack {
           Button {
             viewStore.send(.previousButtonTapped)
@@ -172,9 +172,9 @@ struct ChallengeView: View {
 
 struct ChallengeView_Previews: PreviewProvider {
   static var previews: some View {
-    let scoreDatum = ScoreDatum()
+    let scoreDatum = SampleData.scoreDatum
     ChallengeView(challengeStore: Store(initialState:ChallengeFeature.State( scoreDatum: scoreDatum,
-      challenges:SampleData.challenges, questionNumber:0 ))
+      challenges:SampleData.challenges,questionNumber:0 ))
                   {  ChallengeFeature( )  } )
   }
 }
