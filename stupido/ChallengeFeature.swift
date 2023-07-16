@@ -2,35 +2,38 @@ import ComposableArchitecture
 import SwiftUI
 import q20kshare
 
+/** */
+enum Showing:Equatable {
+  case qanda
+  case hint
+  case answerWasCorrect
+  case answerWasIncorrect
+}
 struct ChallengeFeature: ReducerProtocol {
   struct State :Equatable{
     static func == (lhs: ChallengeFeature.State, rhs: ChallengeFeature.State) -> Bool {
       lhs.showing == rhs.showing
       && lhs.timerCount == rhs.timerCount
     }
+    @PresentationState var showInfoView: ShowInfoFeature.State?
     
-    enum Showing:Equatable {
-      case qanda
-      case hint
-      case answerWasCorrect
-      case answerWasIncorrect
-    }
-    var scoreDatum=ScoreDatum()
+    // this is read only here but read/write upstream
     var challenges:[Challenge] = []
+    var questionMax:Int { challenges.count }
+    // read/write here , but read/write upstream
+    var scoreDatum=ScoreDatum()
     var outcomes:[ScoreDatum.ChallengeOutcomes] = []
     var topicScore: Int {
       outcomes.reduce(0) { $0 + ($1 == .playedCorrectly ? 1 : 0)}
     }
-
+    // these are really of no interest upstream
     var questionNumber:Int = 0
-    var questionMax:Int { challenges.count }
     var showing:Showing = .qanda
     var isTimerRunning = false
     var timerCount = 0
-    var topic : String {
-      challenges[questionNumber].topic
-    }
-    var once = false 
+    var once = false
+    
+    
     
   }// end of state
   enum CancelID { case timer }
@@ -49,6 +52,7 @@ struct ChallengeFeature: ReducerProtocol {
     case timeTick
     case virtualTimerButtonTapped
     case onceOnlyVirtualyTapped
+    case showInfo(PresentationAction<ShowInfoFeature.Action>)
   }
   fileprivate func startTimer(_ state: inout ChallengeFeature.State) -> EffectTask<ChallengeFeature.Action> {
     state.isTimerRunning = true 
@@ -142,12 +146,20 @@ struct ChallengeFeature: ReducerProtocol {
       state.once = true
       return startTimer(&state)
       
-      // these buttons present sheets
+      // these buttons present sheets when the ser taps
     case .infoButtonTapped:    return .none
       
     case .thumbsUpButtonTapped:    return .none
       
     case .thumbsDownButtonTapped:    return .none
+      
+    case .showInfo:
+      return .none
     }
   }
+}
+
+    .ifLet(\.$showInfo,action:/Action.showInfo){
+      ShowInfoFeature()
+    }
 }

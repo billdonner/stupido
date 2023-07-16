@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		887E866E2A63514200CE8EF9 /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887E866D2A63514200CE8EF9 /* ChallengeView.swift */; };
 		887E86712A636DAF00CE8EF9 /* Expertise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887E86702A636DAF00CE8EF9 /* Expertise.swift */; };
+		887E86732A64A36500CE8EF9 /* InfoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887E86722A64A36500CE8EF9 /* InfoFeature.swift */; };
 		88C69C932A5EFEDE00DE5C30 /* stupidoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */; };
 		88C69C972A5EFEE000DE5C30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C69C962A5EFEE000DE5C30 /* Assets.xcassets */; };
 		88C69C9A2A5EFEE000DE5C30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C69C992A5EFEE000DE5C30 /* Preview Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		887E866D2A63514200CE8EF9 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
 		887E866F2A63665600CE8EF9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		887E86702A636DAF00CE8EF9 /* Expertise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expertise.swift; sourceTree = "<group>"; };
+		887E86722A64A36500CE8EF9 /* InfoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFeature.swift; sourceTree = "<group>"; };
 		88C69C8F2A5EFEDE00DE5C30 /* stupido.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stupido.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stupidoApp.swift; sourceTree = "<group>"; };
 		88C69C962A5EFEE000DE5C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				88C69C922A5EFEDE00DE5C30 /* stupidoApp.swift */,
 				88C69CD42A5F05A800DE5C30 /* Data.swift */,
+				887E86722A64A36500CE8EF9 /* InfoFeature.swift */,
 				88C69CC12A5EFF3D00DE5C30 /* ChallengeFeature.swift */,
 				88C69CC02A5EFF3D00DE5C30 /* ChallengeFeatureTests.swift */,
 				887E866D2A63514200CE8EF9 /* ChallengeView.swift */,
@@ -304,6 +307,7 @@
 				887E866E2A63514200CE8EF9 /* ChallengeView.swift in Sources */,
 				88C69CC42A5EFF3D00DE5C30 /* Subs.swift in Sources */,
 				88C69CC82A5EFF3D00DE5C30 /* TopicsFeature.swift in Sources */,
+				887E86732A64A36500CE8EF9 /* InfoFeature.swift in Sources */,
 				88C69CC22A5EFF3D00DE5C30 /* Scoring.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,8 +12,8 @@ import q20kshare
 @main
 struct stupidoApp: App {
   static let challengeStore =     Store(initialState:ChallengeFeature.State(
-    scoreDatum: SampleData.scoreDatum ,
     challenges:SampleData.challenges,
+    scoreDatum: SampleData.scoreDatum,
     outcomes:SampleData.outcomes,
     questionNumber:0 ))
   {  ChallengeFeature( )  }

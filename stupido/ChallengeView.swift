@@ -12,7 +12,7 @@ import q20kshare
   struct ChallengeViewState: Equatable {
     let challenges: [Challenge]
     let outcomes:[ScoreDatum.ChallengeOutcomes]
-    let showing: ChallengeFeature.State.Showing
+    let showing:  Showing
     let timerCount: Int
     let questionNumber:Int
     let questionMax:Int
@@ -45,7 +45,7 @@ struct ChallengeView: View {
     WithViewStore(challengeStore,observe: ChallengeViewState.init  ){viewStore in
       let tc = viewStore.thisChallenge
  
-    VStack{
+      VStack{
         VStack {
           HStack {
             Text("Grand Score \(viewStore.scoreDatum.grandScore)")
@@ -55,32 +55,32 @@ struct ChallengeView: View {
             Text("Topic Score  \( viewStore.topicScore) ")
           }.font(.footnote).padding(.horizontal)
         }
-        Group {
-          
-          VStack {
-            if viewStore.once {
-              if  viewStore.outcomes [viewStore.questionNumber] != .unplayed
-              {
-                Text ("You've already played this so we won't score your answer").font(.caption)
+  VStack {
+            
+            VStack{
+              HStack {
+                Text("Question \(viewStore.questionNumber+1)" + "/" + "\(viewStore.questionMax+1)")
+                Spacer()
+                Text("Topic \( tc.topic)")
+              }.font(.footnote)
+              Text(tc.question).font(.title)
+              if viewStore.once {
+                if  viewStore.outcomes [viewStore.questionNumber] != .unplayed
+                {
+                  Text ("You've already played this so we won't score your answer").font(.footnote)
+                }
+                else {
+                  Text ("You've never played this.").font(.footnote)
+                }
+              } else {
+                //Text("DIAG - viewStore.once is false").font(.caption)
+                EmptyView()
               }
-            else {
-              Text ("You've never played this.").font(.caption)
             }
-            } else {
-              //Text("DIAG - viewStore.once is false").font(.caption)
-              EmptyView()
-            }
-          }
-            HStack {
-              Text("Question \(viewStore.questionNumber)" + "/" + "\(viewStore.questionMax)")
-              Spacer()
-              Text("Topic \( tc.topic)")
-            }.font(.footnote)
-            Text(tc.question).font(.title)
           }
           .borderedStyleStrong(.gray)
           .padding()
-      // ensure we never go out of bounds regardless of how many answers
+          // ensure we never go out of bounds regardless of how many answers
           if tc.answers.count>0 {
             Button(tc.answers[0])
             {viewStore.send(.answer1ButtonTapped)}
@@ -102,36 +102,37 @@ struct ChallengeView: View {
             {viewStore.send(.answer5ButtonTapped)}
           }
         } .font(.largeTitle) .borderedStyle(.gray)
-        .task{
-          viewStore.send(.onceOnlyVirtualyTapped)
-        }
-        Spacer()
-      switch viewStore.showing {
-          case .qanda:
-            Button("Hint"){
-              viewStore.send(.hintButtonTapped)
-            }
-          case .hint:
-            Text("Hint:" + tc.hint).font(.headline)
-          case .answerWasCorrect:
-            Text("Answer: " + tc.correct).font(.title)
-              .borderedStyleStrong( .green)
-            if tc.opinions.count > 0 {
-              Text(tc.opinions[0].explanation)
-                .borderedStyleStrong(.green)
-            }
-          case .answerWasIncorrect:
-            Text("Answer: " + tc.correct).font(.title)
-              .borderedStyleStrong( .red)
-            if tc.opinions.count > 0 {
-              let explanation = tc.opinions[0].explanation
-              Text(explanation)
-                .borderedStyleStrong( .red)
-            }
+          .task{
+            viewStore.send(.onceOnlyVirtualyTapped)
           }
+        Spacer()
+        switch viewStore.showing {
+        case .qanda:
+          Button("Hint"){
+            viewStore.send(.hintButtonTapped)
+          }
+        case .hint:
+          Text("Hint:" + tc.hint).font(.headline)
+        case .answerWasCorrect:
+          Text("Answer: " + tc.correct).font(.title)
+            .borderedStyleStrong( .green)
+          if tc.opinions.count > 0 {
+            Text(tc.opinions[0].explanation)
+              .borderedStyleStrong(.green)
+          }
+        case .answerWasIncorrect:
+          Text("Answer: " + tc.correct).font(.title)
+            .borderedStyleStrong( .red)
+          if tc.opinions.count > 0 {
+            let explanation = tc.opinions[0].explanation
+            Text(explanation)
+              .borderedStyleStrong( .red)
+          }
+        }
      Spacer()
-      ExpertiseView (outcomes:viewStore.outcomes)
-        .padding()
+      VStack {
+        ExpertiseView (outcomes:viewStore.outcomes)
+          .padding(.horizontal)
         HStack {
           Button {
             viewStore.send(.previousButtonTapped)
@@ -167,14 +168,14 @@ struct ChallengeView: View {
         }.font(.title)
           .padding([.horizontal,.bottom])
       }
+      }
     }
   }
 
 struct ChallengeView_Previews: PreviewProvider {
   static var previews: some View {
     let scoreDatum = SampleData.scoreDatum
-    ChallengeView(challengeStore: Store(initialState:ChallengeFeature.State( scoreDatum: scoreDatum,
-      challenges:SampleData.challenges,questionNumber:0 ))
+    ChallengeView(challengeStore: Store(initialState:ChallengeFeature.State( challenges:SampleData.challenges, scoreDatum: scoreDatum,questionNumber:0 ))
                   {  ChallengeFeature( )  } )
   }
 }

@@ -14,8 +14,8 @@
             filePath = "stupido/ChallengeFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "reduce(into:action:)"
             landmarkType = "7">
             <Locations>
@@ -62,8 +62,8 @@
             filePath = "stupido/ChallengeFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "reduce(into:action:)"
             landmarkType = "7">
             <Locations>
@@ -205,8 +205,8 @@
             filePath = "stupido/ChallengeFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "updata(_:)"
             landmarkType = "9">
          </BreakpointContent>
