@@ -15,6 +15,7 @@ struct ChallengeFeature: ReducerProtocol {
       lhs.showing == rhs.showing
       && lhs.timerCount == rhs.timerCount
     }
+    // present feature
     @PresentationState var showInfoView: ShowInfoFeature.State?
     @PresentationState var showThumbsUpView: ThumbsUpFeature.State?
     @PresentationState var showThumbsDownView: ThumbsDownFeature.State?
@@ -33,9 +34,6 @@ struct ChallengeFeature: ReducerProtocol {
     var isTimerRunning = false
     var timerCount = 0
     var once = false
-    
-    
-    
   }// end of state
   enum CancelID { case timer }
   enum Action {
@@ -75,10 +73,10 @@ struct ChallengeFeature: ReducerProtocol {
  // func reduce(into state:inout State,action:Action)->EffectTask<Action> {
   var body: some ReducerProtocolOf<Self> {
     Reduce { state, action in
+      let thisChallenge = state.challenges[state.questionNumber]
       // fix up scores
-      func updata(_ idx:Int) {
-        let t =  state.challenges[state.questionNumber].correct == state.challenges[state.questionNumber].answers[idx]
-        
+      func answerButtonTapped(_ idx:Int) {
+        let t =  thisChallenge.correct == thisChallenge.answers[idx]
         let oc =  t ? ScoreDatum.ChallengeOutcomes.playedCorrectly : .playedIncorrectly
         // if unplayed
         if state.outcomes [state.questionNumber] == .unplayed {
@@ -86,41 +84,39 @@ struct ChallengeFeature: ReducerProtocol {
           state.outcomes [state.questionNumber] =  oc
           // answer must be correct to adjust score
           if t {
-            state.scoreDatum.adjustScoresForTopic( state.challenges[state.questionNumber].topic, idx: state.questionNumber, outcome:oc)
+            state.scoreDatum.adjustScoresForTopic( thisChallenge.topic, idx: state.questionNumber, outcome:oc)
           }
         }
         state.showing = t ? .answerWasCorrect : .answerWasIncorrect
         state.once = false
         state.isTimerRunning = false
       }
+      
+      
       switch action {
       case .answer1ButtonTapped:
-        updata(0)
+        answerButtonTapped(0)
         return .cancel(id: CancelID.timer) // stop timer
       case .answer2ButtonTapped:
-        updata(1)
+        answerButtonTapped(1)
         return .cancel(id: CancelID.timer)
       case .answer3ButtonTapped:
-        updata(2)
+        answerButtonTapped(2)
         return .cancel(id: CancelID.timer)
       case .answer4ButtonTapped:
-        updata(3)
+        answerButtonTapped(3)
         return .cancel(id: CancelID.timer)
       case .answer5ButtonTapped:
-        updata(4)
+        answerButtonTapped(4)
         return .cancel(id: CancelID.timer)
         
       case .hintButtonTapped:
         if state.showing == .qanda {state.showing = .hint} // dont stop timer
-        return .none
         
       case .timeTick:
         state.timerCount += 1
-        return .none
-        
-      case .virtualTimerButtonTapped:
-        return startTimer(&state)
-        
+      
+      case .virtualTimerButtonTapped: return startTimer(&state)
         
       case .nextButtonTapped:
         if state.questionNumber < state.questionMax {
@@ -129,9 +125,7 @@ struct ChallengeFeature: ReducerProtocol {
           state.showing = .qanda
           state.once = true
           return startTimer(&state)
-          
         }
-        return .none
         
       case .previousButtonTapped:
         if state.questionNumber > 0 {
@@ -141,8 +135,6 @@ struct ChallengeFeature: ReducerProtocol {
           state.once = true
           return startTimer(&state)
         }
-        return .none
-        
         
       case .onceOnlyVirtualyTapped:
         state.questionNumber = 0
@@ -153,32 +145,20 @@ struct ChallengeFeature: ReducerProtocol {
         
         // these buttons present sheets when the ser taps
       case .infoButtonTapped:
-        state.showInfoView = ShowInfoFeature.State(challenge:SampleData.challenge1)
-        
-        return .none
-        
+        state.showInfoView = ShowInfoFeature.State(challenge:thisChallenge)
+ 
       case .thumbsUpButtonTapped:
-        state.showThumbsUpView =
-        ThumbsUpFeature.State(challenge:SampleData.challenge1)
-        return .none
-        
+        state.showThumbsUpView =  ThumbsUpFeature.State(challenge:thisChallenge)
+ 
       case .thumbsDownButtonTapped:
-        state.showThumbsDownView =
-        ThumbsDownFeature.State(challenge:SampleData.challenge1)
-        return .none
-        
-        //      case .showInfo(.presented(.delegate(.cancel))):
-        //        state.showInfoView = nil // dismisses on cancel
-        //        return .none
-        
-      case .showInfo:
-        return .none
-      case .thumbsUp(_):
-        return .none
-      case .thumbsDown(_):
+        state.showThumbsDownView = ThumbsDownFeature.State(challenge:thisChallenge)
+         
+      case .showInfo, .thumbsUp(_),.thumbsDown(_):
         return .none
         
       }
+      // if we get this far
+      return .none
     }
     .ifLet(\.$showInfoView,action:/Action.showInfo){
       ShowInfoFeature()
