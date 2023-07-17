@@ -16,6 +16,11 @@ func timeStringFor(seconds : Int) -> String
   let x =  seconds < 3600 ? String(output[output.firstIndex(of: ":")!..<output.endIndex]) : output
   return String(x.trimmingCharacters(in: .whitespaces).dropFirst())
 }
+func decodeStringFromJSON(encodedString: String) -> String {
+  let withoutQuotes = encodedString.replacingOccurrences(of: "\"", with: "")
+  let decodedString = withoutQuotes.replacingOccurrences(of: "\\\"", with: "\"")
+  return decodedString
+}
 
 
 struct Bordered: ViewModifier {

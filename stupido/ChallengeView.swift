@@ -169,7 +169,38 @@ struct ChallengeView: View {
           .padding([.horizontal,.bottom])
       }
       }
+    .sheet(
+      store: self.challengeStore.scope(
+        state: \.$showInfoView,
+        action: { .showInfo($0) }
+      )
+    ) { store in
+      NavigationStack {
+        ShowInfoView(store: store)
+      }
     }
+    .sheet(
+      store: self.challengeStore.scope(
+        state: \.$showThumbsUpView,
+        action: { .thumbsUp($0) }
+      )
+    ) { store in
+      NavigationStack {
+        ThumbsUpView(store: store)
+      }
+    }
+    .sheet(
+      store: self.challengeStore.scope(
+        state: \.$showThumbsDownView,
+        action: { .thumbsDown($0) }
+      )
+    ) { store in
+      NavigationStack {
+        ThumbsDownView(store: store)
+      }
+    }
+    }
+  
   }
 
 struct ChallengeView_Previews: PreviewProvider {
