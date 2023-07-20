@@ -12,13 +12,13 @@ struct SampleData {
 
   static let outcomes:[ScoreDatum.ChallengeOutcomes] = [.unplayed,.unplayed]
   
-  static let scoresByTopic =  ["Nature":ScoreDatum.ScoreData(topic:"Nature",topicScore: 0,highWaterMark: -1,outcomes: outcomes)]
+  static let scoresByTopic =  ["Nature":ScoreDatum.ScoreData(topic:"Nature",topicScore: 0,outcomes: outcomes)]
   
   static let scoreDatum = ScoreDatum(scoresByTopic:scoresByTopic)
   
   static let opinions = [
-    Opinion(id: "1234-5678-91011", truth: false, explanation: "blah blah blah blah blah blah blah blah", opinionID: "9999999", source: "billbot-070-v2"),
-    Opinion(id: "932823-abcd0393-11", truth: true, explanation: "blah blah blah blah blah blah blah blah", opinionID: "9999998", source: "bard-023-v3")
+    Opinion(id: "1234-5678-91011", truth: false, explanation: "This is chatgpt's explanation", opinionID: "9999999", source: "billbot-070-v2"),
+    Opinion(id: "932823-abcd0393-11", truth: true, explanation: "This is bard's explanation", opinionID: "9999998", source: "bard-023-v3")
   ]
   
   static let prompt1 = "Make up some fun questions for me"

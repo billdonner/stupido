@@ -10,6 +10,7 @@ import q20kshare
 
 
 struct ScoreDatum :Equatable {
+
   enum ChallengeOutcomes :Codable ,Equatable{
     case unplayed
     case playedCorrectly
@@ -18,9 +19,20 @@ struct ScoreDatum :Equatable {
   struct ScoreData : Codable,Equatable {
     let topic:String
     let topicScore:Int
-    let highWaterMark:Int
     let outcomes:[ChallengeOutcomes]
+    
+    var highWaterMark : Int {
+      outcomes.reduce(0){x,y in x + ((y != .unplayed) ? 1 : 0)}
+    }
+    var playedCorrectly : Int {
+      outcomes.reduce(0){x,y in x + ((y == .playedCorrectly) ? 1 : 0)}
+    }
+    var playedInCorrectly : Int {
+      outcomes.reduce(0){x,y in x + ((y == .playedIncorrectly) ? 1 : 0)}
+    }
   }
+  
+  
   internal init(scoresByTopic: [String : ScoreData] = [String:ScoreData]()) {
     self.scoresByTopic = scoresByTopic
   }
@@ -68,11 +80,8 @@ struct ScoreDatum :Equatable {
     guard let x = x else {return}
     var cha = x.outcomes
     cha[idx] = outcome
-    var hwm = x.highWaterMark
-    if idx >  x.highWaterMark  { hwm  = idx }
     scoresByTopic[topic] = ScoreData(topic:topic,
-                                     topicScore: x.topicScore + n,
-                                     highWaterMark : hwm, outcomes:cha)
+                                     topicScore: x.topicScore + n, outcomes:cha)
     save()
     
   }
@@ -81,7 +90,6 @@ struct ScoreDatum :Equatable {
     for gd in gameData {
       scoresByTopic[gd.subject]=ScoreData(topic:gd.subject,
                                           topicScore: 0,
-                                          highWaterMark:-1,
                                           outcomes:Array(repeating: ChallengeOutcomes.unplayed,
                                             count: gd.challenges.count))
     }

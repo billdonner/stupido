@@ -22,7 +22,7 @@ struct ChallengeFeature: ReducerProtocol {
     // this is read only here but read/write upstream
     var challenges:[Challenge] = []
     var questionMax:Int { challenges.count }
-    // read/write here , but read/write upstream
+    // read/write here , but readonly upstream
     var scoreDatum=ScoreDatum()
     var outcomes:[ScoreDatum.ChallengeOutcomes] = []
     var topicScore: Int {
