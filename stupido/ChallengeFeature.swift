@@ -10,33 +10,47 @@ enum Showing:Equatable {
   case answerWasIncorrect
 }
 struct ChallengeFeature: ReducerProtocol {
-  struct State :Equatable{
+  
+  struct State : Equatable{
+    internal init(topic:String = "", challenges: [Challenge] = [], questionNumber: Int = 0, scoreDatum: ScoreDatum = ScoreDatum(), outcomes: [ScoreDatum.ChallengeOutcomes] = [], showing: Showing = .qanda, isTimerRunning: Bool = false, timerCount: Int = 0) {
+      self.topic = topic
+      self.challenges = challenges
+      self.questionNumber = questionNumber
+      self.scoreDatum = scoreDatum
+      self.outcomes = outcomes
+      self.showing = showing
+      self.isTimerRunning = isTimerRunning
+      self.timerCount = timerCount
+    }
+    
+
+    
     static func == (lhs: ChallengeFeature.State, rhs: ChallengeFeature.State) -> Bool {
       lhs.showing == rhs.showing
       && lhs.timerCount == rhs.timerCount
     }
     // present feature
-    @PresentationState var showInfoView: ShowInfoFeature.State?
-    @PresentationState var showThumbsUpView: ThumbsUpFeature.State?
-    @PresentationState var showThumbsDownView: ThumbsDownFeature.State?
-    // this is read only here but read/write upstream
+    @PresentationState  var showInfoView: ShowInfoFeature.State?
+    @PresentationState  var showThumbsUpView: ThumbsUpFeature.State?
+    @PresentationState  var showThumbsDownView: ThumbsDownFeature.State?
+    
+    var scoreDatum =  ScoreDatum.reloadOrInit ()
+    var topic:String = ""
     var challenges:[Challenge] = []
-    var questionMax:Int { challenges.count }
-    // read/write here , but readonly upstream
-    var scoreDatum=ScoreDatum()
-    var outcomes:[ScoreDatum.ChallengeOutcomes] = []
-    var topicScore: Int {
-      outcomes.reduce(0) { $0 + ($1 == .playedCorrectly ? 1 : 0)}
-    }
-    // these are really of no interest upstream
     var questionNumber:Int = 0
+     
+    var outcomes:[ScoreDatum.ChallengeOutcomes] = []
+    
     var showing:Showing = .qanda
     var isTimerRunning = false
     var timerCount = 0
-    var once = false
   }// end of state
+  
+  
+  
   enum CancelID { case timer }
-  enum Action {
+  
+  enum Action:Equatable {
     case nextButtonTapped
     case previousButtonTapped
     case answer1ButtonTapped
@@ -88,7 +102,7 @@ struct ChallengeFeature: ReducerProtocol {
           }
         }
         state.showing = t ? .answerWasCorrect : .answerWasIncorrect
-        state.once = false
+       // state.once = false
         state.isTimerRunning = false
       }
       
@@ -119,11 +133,11 @@ struct ChallengeFeature: ReducerProtocol {
       case .virtualTimerButtonTapped: return startTimer(&state)
         
       case .nextButtonTapped:
-        if state.questionNumber < state.questionMax {
+        if state.questionNumber < state.challenges.count  {
           state.questionNumber += 1
           state.timerCount = 0
           state.showing = .qanda
-          state.once = true
+         // state.once = true
           return startTimer(&state)
         }
         
@@ -132,7 +146,7 @@ struct ChallengeFeature: ReducerProtocol {
           state.questionNumber -= 1
           state.timerCount = 0
           state.showing = .qanda
-          state.once = true
+         // state.once = true
           return startTimer(&state)
         }
         
@@ -140,7 +154,7 @@ struct ChallengeFeature: ReducerProtocol {
         state.questionNumber = 0
         state.timerCount = 0
         state.showing = .qanda
-        state.once = true
+        //state.once = true
         return startTimer(&state)
         
         // these buttons present sheets when the ser taps

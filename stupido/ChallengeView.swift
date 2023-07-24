@@ -20,7 +20,7 @@ struct ChallengeViewState: Equatable {
   let thisChallenge:Challenge
   let thisOutcome: ScoreDatum.ChallengeOutcomes
   var topicScore:Int
-  var once: Bool
+ // var once: Bool
   
   init(state: ChallengeFeature.State) {
     self.challenges = state.challenges
@@ -33,8 +33,8 @@ struct ChallengeViewState: Equatable {
     self.scoreDatum = state.scoreDatum
     self.thisChallenge = state.challenges[state.questionNumber]
     self.thisOutcome = state .outcomes[state.questionNumber]
-    self.topicScore = state.topicScore
-    self.once = state.once
+    self.topicScore = state.outcomes.reduce(0) { $0 + ($1 == .playedCorrectly ? 1 : 0)}
+   // self.once = state.once
   }
 }
 
@@ -222,8 +222,8 @@ struct ChallengeView: View {
 struct ChallengeView_Previews: PreviewProvider {
   static var previews: some View {
       ChallengeView(challengeStore: Store(initialState:ChallengeFeature.State(
-        challenges:SampleData.challenges, scoreDatum: SampleData.scoreDatum,
-        outcomes: SampleData.outcomes,questionNumber:0 ))  {ChallengeFeature()} )
+        challenges:SampleData.challenges, questionNumber:0, scoreDatum: SampleData.scoreDatum,
+        outcomes: SampleData.outcomes ))  {ChallengeFeature()} )
     
   }
 }
