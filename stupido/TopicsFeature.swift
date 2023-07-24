@@ -10,7 +10,7 @@ import SwiftUI
 import q20kshare
 
 /*
- try to keep GameData from chatGPT as a static global
+ try to keep GameData from chatGPT as a nearly static global since its only loaded at app start or in the background
  */
 var gameDatum : [GameData] = []
 
@@ -18,18 +18,20 @@ struct TopicsFeature: ReducerProtocol {
    //let scoreDatum: ScoreDatum
   struct State:Equatable {
     static func == (lhs: TopicsFeature.State, rhs: TopicsFeature.State) -> Bool {
-      lhs.topic == rhs.topic &&
+      lhs.selectedTopic == rhs.selectedTopic &&
        lhs.showChallenge == rhs.showChallenge
     }
     
 
     @PresentationState var showChallenge: ChallengeFeature.State?
+
     var isLoading = false
-    var topic = ""
+    var selectedTopic = ""
+    var topics:[String] = []
   }
   
   enum Action:Equatable {
-    case showChallenge(PresentationAction<ChallengeFeature.Action>)
+    case topicRowTapped(PresentationAction<ChallengeFeature.Action>)
 
     case reloadButtonTapped
     case reloadButtonResponse([GameData])
@@ -41,7 +43,9 @@ struct TopicsFeature: ReducerProtocol {
       case let .reloadButtonResponse(gameData):
         gameDatum = gameData
         state.isLoading = false
-        state.topic = gameData[0].subject // just capture first to start 
+        // just capture first to start
+        state.topics = gameData.map{$0.subject}
+        state.selectedTopic = state.topics[0]
         state.showChallenge!.scoreDatum.setScoresFromGameData(gameData)
         print("Data loaded \(gameData.count) topics")
         return .none
@@ -61,13 +65,13 @@ struct TopicsFeature: ReducerProtocol {
     //  case .showChallenge(_):
        // state.showChallenge = ChallengeFeature.State(topic:  state.showChallenge!.topic)
         
-      case .showChallenge :
-        let topic = state.topic
+      case .topicRowTapped :
+        let topic = state.selectedTopic
         state.showChallenge = ChallengeFeature.State(topic:topic)
       }
       return .none
     } 
-    .ifLet(\.$showChallenge, action: /Action.showChallenge) {
+    .ifLet(\.$showChallenge, action: /Action.topicRowTapped) {
       ChallengeFeature()
     }
   }

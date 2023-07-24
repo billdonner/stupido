@@ -45,13 +45,14 @@ struct ChallengeView: View {
       //, removeDuplicates :==
       WithViewStore(challengeStore,observe: ChallengeViewState.init  ){viewStore in
         let tc = viewStore.thisChallenge
+        let th =  viewStore.thisOutcome
         VStack { // a place to hang the nav title
           VStack{
 //
           // SHOW Question
               VStack{
                 ZStack {
-                  let t:Color = switch( viewStore.outcomes[viewStore.questionNumber] ){
+                  let t:Color = switch( th ){
                   case .unplayed:
                       .clear
                   case .playedCorrectly:
@@ -69,7 +70,7 @@ struct ChallengeView: View {
             //SHOW   Answers
             // ensure we never go out of bounds regardless of how many answers
             VStack {
-              let t = viewStore.outcomes[viewStore.questionNumber] != .unplayed
+              let t = th != .unplayed
               if tc.answers.count>0 {
                 Button(action:{viewStore.send(.answer1ButtonTapped)}){
                   Text(tc.answers[0]).padding()

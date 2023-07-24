@@ -19,7 +19,7 @@ struct TopicsViewState: Equatable {
      self.sd = state.showChallenge!.scoreDatum
     // self.gameDatum = state.gameDatum
      self.isLoading = state.isLoading
-     self.topic = state.topic
+     self.topic = state.selectedTopic
    }
  }
 struct ScoreView: View {
@@ -37,44 +37,47 @@ struct ScoreView: View {
     }
   }
 }
+struct LeftistView: View {
+  let h:String
+  let idx:Int
+  var body: some View {
+    HStack {
+      VStack{
+        Text(h).font(.footnote)
+        Text("\(gameDatum[idx].challenges.count)").font(.footnote)
+      }
+    }
+              
+  }
+}
 struct TopicsView: View {
   let topicsStore:StoreOf<TopicsFeature>
   var body: some View {
     NavigationStack {
       WithViewStore( topicsStore,observe:TopicsViewState.init){viewStore in
+        
+        
         VStack {
           ScrollView {
+            VStack {
+            ForEach(Array(zip(1..., gameDatum)), id: \.1.id) { number, gameData in
               
-              ForEach(Array(zip(1..., gameDatum)), id: \.1.id) { number, gameData in
-              let sbt = viewStore.sd.scoresByTopic[gameData.subject]
-              let score = sbt?.topicScore ?? -1
-              let hwm = sbt?.highWaterMark ?? -1
-              let h = hwm == -1 ? "😎" : "\(hwm)"
-              let cwm = sbt?.playedCorrectly ?? -1
-              let c = cwm == -1 ? "😎" : "\(cwm)"
-              let iwm = sbt?.playedInCorrectly ?? -1
-              let i = iwm == -1 ? "😎" : "\(iwm)"
-              HStack {
-                VStack{
-                  Text(h).font(.footnote)
-                  Text("\(gameData.challenges.count)").font(.footnote)
-                }
-              Text(gameData.subject).font(.title).lineLimit(2)
+              if  let sbt = viewStore.sd.scoresByTopic[gameData.subject] {
+                ExtractedView(sbt:sbt,gameData:gameData,idx:number)
                   .onTapGesture {
-                    viewStore.send(.rowTapped(number))
+                    // viewStore.send(.topicRowTapped)
                   }
-                ScoreView ()
-              }.borderedStyleStrong(.blue).padding(.horizontal)
-            
-            }
-          }
-          if viewStore.isLoading {
-            ProgressView().progressViewStyle(.automatic)
-              .foregroundColor(.red).background(.blue)
-          } else {
-           // Button("Reload"){viewStore.send(.reloadButtonTapped)}.padding()
-          }
+              }
+            }// for each
+          }// scrollview
+        }//vstack
+        if viewStore.isLoading {
+          ProgressView().progressViewStyle(.automatic)
+            .foregroundColor(.red).background(.blue)
+        } else {
+          // Button("Reload"){viewStore.send(.reloadButtonTapped)}.padding()
         }
+      }
         .toolbar {
           ToolbarItemGroup(placement:.navigation){
             HStack {
@@ -92,10 +95,11 @@ struct TopicsView: View {
             }
           }//.monospaced()
         }
+        
         .sheet(
           store: self.topicsStore.scope(
             state: \.$showChallenge,
-            action: { .showChallenge($0) }
+            action: { .topicRowTapped($0) }
           )
         ) { store in
           NavigationStack {
@@ -107,9 +111,10 @@ struct TopicsView: View {
           viewStore.send(.reloadButtonTapped)
         }
       }
+      
+    }//nAVstack
     }
   }
-}
 struct TopicsPreview: PreviewProvider {
   static var previews: some View {
     TopicsView(
@@ -117,5 +122,31 @@ struct TopicsPreview: PreviewProvider {
         TopicsFeature()
       }
     )
+  }
+}
+
+struct ExtractedView: View {
+  let sbt:ScoreDatum.ScoreData
+  let gameData:GameData
+  let idx:Int
+  var body: some View {
+    VStack {
+      
+      let hwm = sbt.highWaterMark //?? -1
+      let h = hwm == -1 ? "😎" : "\(hwm)"
+      LeftistView(h: h, idx: idx)
+      
+      Text(gameData.subject).font(.title).lineLimit(2)
+      
+      
+      let cwm = sbt.playedCorrectly //?? -1
+      let c = cwm == -1 ? "😎" : "\(cwm)"
+      let iwm = sbt.playedInCorrectly// ?? -1
+      let i = iwm == -1 ? "😎" : "\(iwm)"
+      let score = sbt.topicScore// ?? -1
+      ScoreView (score: score, c: c, i: i)
+    }
+    .borderedStyleStrong(.blue).padding(.horizontal)
+
   }
 }

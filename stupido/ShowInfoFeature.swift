@@ -10,11 +10,18 @@ import q20kshare
 import SwiftUI
 
 struct ShowInfoView: View {
+  struct ViewState: Equatable {
+    let thisChallenge: Challenge
+    init(state: ShowInfoFeature.State) {
+      self.thisChallenge = state.challenge
+    }
+  }
+    
   let store: StoreOf<ShowInfoFeature>
 
   var body: some View {
-    WithViewStore(self.store, observe: { $0 }) { viewStore in
-      let challenge = viewStore.challenge
+    WithViewStore(self.store, observe: ViewState.init ) { viewStore in
+      let challenge = viewStore.thisChallenge
       NavigationStack{
         ScrollView {
           VStack(spacing:20){
@@ -22,35 +29,37 @@ struct ShowInfoView: View {
               Spacer()
             }.font(.headline)
             VStack(spacing:5){
-              HStack{
-                Text("challenge id:")
-                Spacer()
-                Text(challenge.id )
-              }
-              HStack{
-                Text("source:")
-                Spacer()
-                Text( challenge.aisource )
-              }
-              HStack{
-                Text("generated:")
-                Spacer()
-                Text(challenge.date.formatted())
-              }
-              HStack{
-                Text("topic:")
-                Spacer()
-                Text(challenge.topic)
-              }
-              HStack{
-                Text("question:")
-                Spacer()
-                Text(challenge.question).font(.headline)
-              }
-              HStack{
-                Text("answer:")
-                Spacer()
-                Text(challenge.correct).font(.headline)
+              Group {
+                HStack{
+                  Text("challenge id:")
+                  Spacer()
+                  Text(challenge.id )
+                }
+                HStack{
+                  Text("source:")
+                  Spacer()
+                  Text( challenge.aisource )
+                }
+                HStack{
+                  Text("generated:")
+                  Spacer()
+                  Text(challenge.date.formatted())
+                }
+                HStack{
+                  Text("topic:")
+                  Spacer()
+                  Text(challenge.topic)
+                }
+                HStack{
+                  Text("question:")
+                  Spacer()
+                  Text(challenge.question).font(.headline)
+                }
+                HStack{
+                  Text("answer:")
+                  Spacer()
+                  Text(challenge.correct).font(.headline)
+                }
               }
               if let img = challenge.image {
                 HStack{
@@ -66,15 +75,15 @@ struct ShowInfoView: View {
                   Text(article).font(.headline)
                 }
               }
-              // next one is over limit
-              //          if let explanation = challenge.explantion {
-              //            HStack{
-              //              Text("explanation:")
-              //              Spacer()
-              //              Text(explanation).font(.headline)
-              //            }
-              //          }
-              //
+             //  next one is over limit
+                if let explanation = challenge.explanation {
+                          HStack{
+                            Text("explanation:")
+                            Spacer()
+                            Text(explanation).font(.headline)
+                          }
+                        }
+              
             }
             HStack{
               Text("Veracity Opinions From Other Chatbots").font(.headline)
