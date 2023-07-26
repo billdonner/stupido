@@ -9,80 +9,51 @@ import ComposableArchitecture
 import SwiftUI
 import q20kshare
 
-// gameData is now handled as an global, not included in any  Feature State
 
-struct TopicsViewState: Equatable {
-  var sd:ScoreDatum
-  let isLoading:Bool
-  let topic:String
-   init(state: TopicsFeature.State) {
-     self.sd = state.showChallenge!.scoreDatum
-    // self.gameDatum = state.gameDatum
-     self.isLoading = state.isLoading
-     self.topic = state.selectedTopic
-   }
- }
-struct ScoreView: View {
-  let score:Int
-  let c:String
-  let i:String
-  var body: some View {
-    HStack {
-      Spacer()
-      Text("\(score)").font(.title)
-      VStack {
-        Text(c).font(.footnote)
-        Text(i).font(.footnote)
-      }
-    }
-  }
-}
-struct LeftistView: View {
-  let h:String
-  let idx:Int
-  var body: some View {
-    HStack {
-      VStack{
-        Text(h).font(.footnote)
-        Text("\(gameDatum[idx].challenges.count)").font(.footnote)
-      }
-    }
-              
-  }
-}
 struct TopicsView: View {
+  
+  struct ViewState: Equatable {
+    let isLoading:Bool
+    let topic:String
+    let scoresByTopic:[String:ScoreData]
+    let grandScore:Int
+     init(state: TopicsFeature.State) {
+       self.isLoading = state.isLoading
+       self.topic = state.selectedTopic
+       self.scoresByTopic =  state.challengeFeature.scoresByTopic
+       self.grandScore = state.challengeFeature.grandScore
+     }
+   }
+  
   let topicsStore:StoreOf<TopicsFeature>
   var body: some View {
     NavigationStack {
-      WithViewStore( topicsStore,observe:TopicsViewState.init){viewStore in
-        
-        
+      WithViewStore( topicsStore,observe:ViewState.init){viewStore in
         VStack {
           ScrollView {
-            VStack {
-            ForEach(Array(zip(1..., gameDatum)), id: \.1.id) { number, gameData in
-              
-              if  let sbt = viewStore.sd.scoresByTopic[gameData.subject] {
-                ExtractedView(sbt:sbt,gameData:gameData,idx:number)
+           // ForEach(Array(zip(1..., gameDatum)), id: \.1.id) { number, gameData in
+            ForEach(gameDatum ) {  gameData in
+              if  let sbt = viewStore.scoresByTopic[gameData.subject] {
+                OneRowView(sbt:sbt,gameData:gameData )
                   .onTapGesture {
-                    // viewStore.send(.topicRowTapped)
+                   // viewStore.send(.topicRowTapped(ChallengeFeature.Action.onceOnlyVirtualyTapped))
+                    
+                    print("must figure out what to do for tap on \(sbt.topic)")
                   }
               }
             }// for each
           }// scrollview
-        }//vstack
+       
         if viewStore.isLoading {
           ProgressView().progressViewStyle(.automatic)
             .foregroundColor(.red).background(.blue)
-        } else {
-          // Button("Reload"){viewStore.send(.reloadButtonTapped)}.padding()
         }
       }
         .toolbar {
           ToolbarItemGroup(placement:.navigation){
             HStack {
               HStack{
-                Text("Score:\(viewStore.sd.grandScore)")
+                Text("Score:\(viewStore.grandScore)")
                 Text("Topics:\(gameDatum.count)")
                 Text("Challenges:\(gameDatum.map {$0.challenges.count}.reduce(0,+))")
               }.font(.footnote)
@@ -124,27 +95,51 @@ struct TopicsPreview: PreviewProvider {
     )
   }
 }
-
-struct ExtractedView: View {
-  let sbt:ScoreDatum.ScoreData
+struct RightistView: View {
+  let score:Int
+  let c:String
+  let i:String
+  var body: some View {
+    HStack {
+      Spacer()
+      Text("\(score)").font(.title)
+      VStack {
+        Text(c).font(.footnote)
+        Text(i).font(.footnote)
+      }
+    }
+  }
+}
+struct LeftistView: View {
+  let h:String
   let gameData:GameData
-  let idx:Int
+  var body: some View {
+      VStack{
+        Text(h).font(.footnote)
+        Text("\(gameData.challenges.count)").font(.footnote)
+      }
+  }
+}
+struct OneRowView: View {
+  let sbt:ScoreData
+  let gameData:GameData
   var body: some View {
     VStack {
-      
-      let hwm = sbt.highWaterMark //?? -1
-      let h = hwm == -1 ? "😎" : "\(hwm)"
-      LeftistView(h: h, idx: idx)
-      
-      Text(gameData.subject).font(.title).lineLimit(2)
-      
-      
+      HStack {
+        let hwm = sbt.highWaterMark //?? -1
+        let h = hwm == -1 ? "😎" : "\(hwm)"
+        LeftistView(h: h, gameData:gameData)
+        
+        Text(gameData.subject).font(.title2).lineLimit(2)
+    
+      Spacer()
       let cwm = sbt.playedCorrectly //?? -1
       let c = cwm == -1 ? "😎" : "\(cwm)"
       let iwm = sbt.playedInCorrectly// ?? -1
       let i = iwm == -1 ? "😎" : "\(iwm)"
-      let score = sbt.topicScore// ?? -1
-      ScoreView (score: score, c: c, i: i)
+      let score = sbt.playedCorrectly //- sbt.playedInCorrectly//
+      RightistView (score: score, c: c, i: i)
+      }
     }
     .borderedStyleStrong(.blue).padding(.horizontal)
 

@@ -11,29 +11,34 @@ import q20kshare
 
 struct ChallengeViewState: Equatable {
   let challenges: [Challenge]
-  let outcomes:[ScoreDatum.ChallengeOutcomes]
+  let scoresByTopic: [String:ScoreData]
   let showing:  Showing
   let timerCount: Int
   let questionNumber:Int
   let questionMax:Int
-  let scoreDatum:ScoreDatum
   let thisChallenge:Challenge
-  let thisOutcome: ScoreDatum.ChallengeOutcomes
+  let thisOutcome: ChallengeOutcomes
+  let outcomes:[ChallengeOutcomes]
   var topicScore:Int
+  let grandScore:Int
  // var once: Bool
   
   init(state: ChallengeFeature.State) {
+    
+    self.thisChallenge = state.challenges[state.questionNumber]
+    let topic = self.thisChallenge.topic
+    let x = state.scoresByTopic[topic] ?? ScoreData.default
+    self.outcomes = x.outcomes
+    self.scoresByTopic = state.scoresByTopic
     self.challenges = state.challenges
-    self.outcomes = state.outcomes
-    assert(self.challenges.count == state.outcomes.count , "size MisMatch")
+   // assert(self.challenges.count == state.outcomes.count , "size MisMatch")
     self.showing = state.showing
     self.timerCount = state.timerCount
     self.questionMax = state.challenges.count - 1
     self.questionNumber = state.questionNumber
-    self.scoreDatum = state.scoreDatum
-    self.thisChallenge = state.challenges[state.questionNumber]
-    self.thisOutcome = state .outcomes[state.questionNumber]
-    self.topicScore = state.outcomes.reduce(0) { $0 + ($1 == .playedCorrectly ? 1 : 0)}
+    self.thisOutcome = x.outcomes[questionNumber]
+    self.topicScore = x.outcomes.reduce(0) { $0 + ($1 == .playedCorrectly ? 1 : 0)}
+    self.grandScore = state.grandScore
    // self.once = state.once
   }
 }
@@ -146,7 +151,7 @@ struct ChallengeView: View {
                     Spacer()
                     Text("\(timeStringFor(seconds:viewStore.timerCount))")
                     Spacer( )
-                    Text("Score \( viewStore.topicScore)" + "/" + "\(viewStore.scoreDatum.grandScore)")
+                    Text("Score \( viewStore.topicScore)" + "/" + "\(viewStore.grandScore)")
                   }.monospaced().font(.footnote)
                 }//.monospaced()
               }
@@ -223,8 +228,7 @@ struct ChallengeView: View {
 struct ChallengeView_Previews: PreviewProvider {
   static var previews: some View {
       ChallengeView(challengeStore: Store(initialState:ChallengeFeature.State(
-        challenges:SampleData.challenges, questionNumber:0, scoreDatum: SampleData.scoreDatum,
-        outcomes: SampleData.outcomes ))  {ChallengeFeature()} )
+        challenges:SampleData.challenges, questionNumber:0 ))  {ChallengeFeature()} )
     
   }
 }

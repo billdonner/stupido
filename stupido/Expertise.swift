@@ -18,9 +18,9 @@ enum Expertise: String, Equatable {
   case expert = "Terrific"
 }
   
- func calculateExpertise(_ outcomes:[ScoreDatum.ChallengeOutcomes]) -> Expertise {
+ func calculateExpertise(_ outcomes:[ChallengeOutcomes]) -> Expertise {
     let topicScore = outcomes.reduce(0){x,y in
-     x + (y == ScoreDatum.ChallengeOutcomes.playedCorrectly  ? 1 : 0)}
+     x + (y == ChallengeOutcomes.playedCorrectly  ? 1 : 0)}
 
     let pct:Double = Double(topicScore) / Double(outcomes.count)
   
@@ -37,7 +37,7 @@ enum Expertise: String, Equatable {
   }
 
 struct ExpertiseView : View {
-  let outcomes:[ScoreDatum.ChallengeOutcomes]
+  let outcomes:[ChallengeOutcomes]
   var body: some View {
     
     let expertise =  calculateExpertise(outcomes)

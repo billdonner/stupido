@@ -10,11 +10,11 @@ import q20kshare
 
 struct SampleData {
 
-  static let outcomes:[ScoreDatum.ChallengeOutcomes] = [.unplayed,.unplayed]
+  static let outcomes:[ ChallengeOutcomes] = [.unplayed,.unplayed]
   
-  static let scoresByTopic =  ["Nature":ScoreDatum.ScoreData(topic:"Nature",topicScore: 0,outcomes: outcomes)]
+  static let scoresByTopic =  ["Nature": ScoreData(topic:"Nature",outcomes: outcomes)]
   
-  static let scoreDatum = ScoreDatum(scoresByTopic:scoresByTopic)
+ // static let scoreDatum = ScoreDatum(scoresByTopic:scoresByTopic)
   
   static let opinions = [
     Opinion(id: "1234-5678-91011", truth: false, explanation: "This is chatgpt's explanation", opinionID: "9999999", source: "billbot-070-v2"),

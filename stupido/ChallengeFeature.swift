@@ -12,12 +12,10 @@ enum Showing:Equatable {
 struct ChallengeFeature: ReducerProtocol {
   
   struct State : Equatable{
-    internal init(topic:String = "", challenges: [Challenge] = [], questionNumber: Int = 0, scoreDatum: ScoreDatum = ScoreDatum(), outcomes: [ScoreDatum.ChallengeOutcomes] = [], showing: Showing = .qanda, isTimerRunning: Bool = false, timerCount: Int = 0) {
+    internal init(topic:String = "", challenges: [Challenge] = [], questionNumber: Int = 0, showing: Showing = .qanda, isTimerRunning: Bool = false, timerCount: Int = 0) {
       self.topic = topic
       self.challenges = challenges
       self.questionNumber = questionNumber
-      self.scoreDatum = scoreDatum
-      self.outcomes = outcomes
       self.showing = showing
       self.isTimerRunning = isTimerRunning
       self.timerCount = timerCount
@@ -33,20 +31,22 @@ struct ChallengeFeature: ReducerProtocol {
     @PresentationState  var showInfoView: ShowInfoFeature.State?
     @PresentationState  var showThumbsUpView: ThumbsUpFeature.State?
     @PresentationState  var showThumbsDownView: ThumbsDownFeature.State?
-    
-    var scoreDatum =  ScoreDatum.reloadOrInit ()
+    var scoresByTopic:[String:ScoreData] = [:]
     var topic:String = ""
     var challenges:[Challenge] = []
     var questionNumber:Int = 0
      
-    var outcomes:[ScoreDatum.ChallengeOutcomes] = []
-    
     var showing:Showing = .qanda
     var isTimerRunning = false
     var timerCount = 0
+    
+    var topics : [String] {
+    scoresByTopic.map {$0.1.topic}
+    }
+    var grandScore : Int {
+     scoresByTopic.reduce(0) { $0 + $1.1.playedCorrectly}
+    }
   }// end of state
-  
-  
   
   enum CancelID { case timer }
   
@@ -69,6 +69,7 @@ struct ChallengeFeature: ReducerProtocol {
     case thumbsUp(PresentationAction<ThumbsUpFeature.Action>)
     case thumbsDown(PresentationAction<ThumbsDownFeature.Action>)
   }
+  
   fileprivate func startTimer(_ state: inout ChallengeFeature.State) -> EffectTask<ChallengeFeature.Action> {
     state.isTimerRunning = true 
     if state.isTimerRunning {
@@ -91,15 +92,14 @@ struct ChallengeFeature: ReducerProtocol {
       // fix up scores
       func answerButtonTapped(_ idx:Int) {
         let t =  thisChallenge.correct == thisChallenge.answers[idx]
-        let oc =  t ? ScoreDatum.ChallengeOutcomes.playedCorrectly : .playedIncorrectly
+        var outcomes = state.scoresByTopic[state.topic]?.outcomes ?? Array(repeating:.unplayed,count:state.challenges.count)
+        let oc =  t ? ChallengeOutcomes.playedCorrectly : .playedIncorrectly
         // if unplayed
-        if state.outcomes [state.questionNumber] == .unplayed {
+        if outcomes [state.questionNumber] == ChallengeOutcomes.unplayed {
           // adjust the outcome
-          state.outcomes [state.questionNumber] =  oc
-          // answer must be correct to adjust score
-          if t {
-            state.scoreDatum.adjustScoresForTopic( thisChallenge.topic, idx: state.questionNumber, outcome:oc)
-          }
+          outcomes [state.questionNumber] = oc
+          state.scoresByTopic[state.topic] = ScoreData(topic:state.topic,outcomes: outcomes)
+
         }
         state.showing = t ? .answerWasCorrect : .answerWasIncorrect
        // state.once = false
