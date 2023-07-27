@@ -10,7 +10,7 @@ import q20kshare
 
 struct SampleData {
 
-  static let outcomes:[ ChallengeOutcomes] = [.unplayed,.unplayed]
+  static let outcomes:[ ChallengeOutcomes] = [.unplayed,.playedCorrectly]
   
   static let scoresByTopic =  ["Nature": ScoreData(topic:"Nature",outcomes: outcomes)]
   

@@ -14,12 +14,11 @@ struct TopicsFeature: ReducerProtocol {
 
   struct State:Equatable {
     static func == (lhs: TopicsFeature.State, rhs: TopicsFeature.State) -> Bool {
-      lhs.selectedTopic == rhs.selectedTopic &&
+      lhs.challengeFeature.topic == rhs.challengeFeature.topic &&
        lhs.showChallenge == rhs.showChallenge
     }
     @PresentationState var showChallenge: ChallengeFeature.State?
     var isLoading = false
-    var selectedTopic = ""
     var challengeFeature = ChallengeFeature.State()
 
     mutating func clearAllScores(_ gameData:[GameData]) {
@@ -33,7 +32,8 @@ struct TopicsFeature: ReducerProtocol {
   }
   
   enum Action:Equatable {
-    case topicRowTapped(PresentationAction<ChallengeFeature.Action>)
+    case showTopicButtonTapped(Int)
+    case showTopic(PresentationAction<ChallengeFeature.Action>)
     case reloadButtonTapped
     case reloadButtonResponse([GameData])
   }
@@ -42,19 +42,21 @@ struct TopicsFeature: ReducerProtocol {
     Reduce<State, Action> { state, action in
       switch action {
         
-      case let .reloadButtonResponse(gameData):
-        gameDatum = IdentifiedArray(uniqueElements: gameData)
-        state.isLoading = false
-        state.clearAllScores(gameData)
-        
+      case let .reloadButtonResponse(gd):
+ 
+        state.challengeFeature.topic = gd.map{$0.subject}[0]
+        state.challengeFeature.challenges = gd.map {$0.challenges} [0]
+
         state.challengeFeature.scoresByTopic = [:]
-        for gd in gameData {
-          state.challengeFeature.scoresByTopic[gd.subject]=ScoreData(topic:gd.subject,
+        for gdd in gd {
+          state.challengeFeature.scoresByTopic[gdd.subject]=ScoreData(topic:gdd.subject,
                                               outcomes:Array(repeating: ChallengeOutcomes.unplayed,
-                                                count: gd.challenges.count))
+                                                count: gdd.challenges.count))
         }
-        state.selectedTopic = gameData.map{$0.subject}[0]
-        print("Data loaded \(gameData.count) topics")
+        state.isLoading = false
+        state.clearAllScores(gd)
+        gameDatum = IdentifiedArray(uniqueElements: gd)
+        print("Stupidio loaded \(gameDatum.count) topics")
         return .none
         
       case .reloadButtonTapped: if !state.isLoading {
@@ -70,12 +72,22 @@ struct TopicsFeature: ReducerProtocol {
         }
       }
 
-      case .topicRowTapped :
+      case .showTopicButtonTapped(let idx) :
+       //move in the data for challengeview
+        state.challengeFeature.topic = gameDatum[idx].subject
+        state.challengeFeature.challenges = gameDatum[idx].challenges
+        
+        state.challengeFeature.timerCount = 0
+        state.challengeFeature.isTimerRunning = false
+        state.challengeFeature.questionNumber = 0
+   
         state.showChallenge = state.challengeFeature //ChallengeFeature.State(topic:state.selectedTopic)
+      case .showTopic(_):
+        return .none 
       }
       return .none
     } 
-    .ifLet(\.$showChallenge, action: /Action.topicRowTapped) {
+    .ifLet(\.$showChallenge, action: /Action.showTopic ) {
       ChallengeFeature()
     }
   }

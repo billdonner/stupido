@@ -14,8 +14,8 @@
             filePath = "stupido/ChallengeFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -62,8 +62,8 @@
             filePath = "stupido/ChallengeFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -119,86 +119,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9D1FA4C8-69F3-4F74-AD9F-C2E5F27540BC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "stupido/TopicsFeature.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A5B10110-D637-4D68-AF12-6108E008E48C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "stupido/ChallengeFeature.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "answerButtonTapped(_:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "91FD83F0-04AC-4D08-9A35-9224ED522256"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "stupido/TopicsFeature.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "91FD83F0-04AC-4D08-9A35-9224ED522256 - 559fb1ec874b3fcc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (inout stupido.TopicsFeature.State, stupido.TopicsFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.TopicsFeature.Action, Swift.Never&gt; in stupido.TopicsFeature.body.getter : some"
-                  moduleName = "stupido"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsFeature.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "1256">
-               </Location>
-               <Location
-                  uuid = "91FD83F0-04AC-4D08-9A35-9224ED522256 - 8b1cde5fa897b14f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "stupido.TopicsFeature.body.getter : some"
-                  moduleName = "stupido"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsFeature.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "192">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "CADAE6A2-3C35-4A29-84A6-D13CC12C2D3F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -206,26 +126,10 @@
             filePath = "stupido/TopicsFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0F0D1DAA-2AA1-4C03-B1BA-3A9389049E13"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "stupido/ChallengeFeature.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
             endingLineNumber = "91"
-            landmarkName = "answerButtonTapped(_:)"
-            landmarkType = "9">
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -238,8 +142,8 @@
             filePath = "stupido/ChallengeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -301,8 +205,8 @@
             filePath = "stupido/ChallengeFeature.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "init(topic:challenges:questionNumber:showing:isTimerRunning:timerCount:)"
             landmarkType = "7">
             <Locations>
@@ -349,10 +253,326 @@
             filePath = "stupido/TopicsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C3F7DDA9-4FC5-4BC2-98A3-E53CFC9EAFED"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/TopicsFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "C3F7DDA9-4FC5-4BC2-98A3-E53CFC9EAFED - 559fb1ec874b3b31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout stupido.TopicsFeature.State, stupido.TopicsFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.TopicsFeature.Action, Swift.Never&gt; in stupido.TopicsFeature.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "464">
+               </Location>
+               <Location
+                  uuid = "C3F7DDA9-4FC5-4BC2-98A3-E53CFC9EAFED - 3c33ae63738cf29e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (q20kshare.GameData) -&gt; Swift.Array&lt;q20kshare.Challenge&gt; in closure #1 (inout stupido.TopicsFeature.State, stupido.TopicsFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.TopicsFeature.Action, Swift.Never&gt; in stupido.TopicsFeature.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "C3F7DDA9-4FC5-4BC2-98A3-E53CFC9EAFED - 559fb1ec874b3b31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout stupido.TopicsFeature.State, stupido.TopicsFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.TopicsFeature.Action, Swift.Never&gt; in stupido.TopicsFeature.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  uuid = "C3F7DDA9-4FC5-4BC2-98A3-E53CFC9EAFED - e82337c6409fe355"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (q20kshare.GameData) -&gt; Swift.String in closure #1 (inout stupido.TopicsFeature.State, stupido.TopicsFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.TopicsFeature.Action, Swift.Never&gt; in stupido.TopicsFeature.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F2D4DB30-7A71-4AF7-AA4C-6F1F83E0A6EB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/TopicsFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "F2D4DB30-7A71-4AF7-AA4C-6F1F83E0A6EB - 559fb1ec874b3b50"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout stupido.TopicsFeature.State, stupido.TopicsFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.TopicsFeature.Action, Swift.Never&gt; in stupido.TopicsFeature.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "616">
+               </Location>
+               <Location
+                  uuid = "F2D4DB30-7A71-4AF7-AA4C-6F1F83E0A6EB - fe49f77be5b98fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (q20kshare.GameData) -&gt; Swift.Array&lt;q20kshare.Challenge&gt; in closure #1 (inout stupido.TopicsFeature.State, stupido.TopicsFeature.Action) -&gt; ComposableArchitecture.EffectPublisher&lt;stupido.TopicsFeature.Action, Swift.Never&gt; in stupido.TopicsFeature.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7A4AD752-87D1-41D8-B1FC-3D6630E842C9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/TopicsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7A4AD752-87D1-41D8-B1FC-3D6630E842C9 - 96c304a92e977704"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ScrollView&lt;SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 (ComposableArchitecture.ViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action&gt;) -&gt; &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; ComposableArchitecture.WithViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action, &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in stupido.TopicsView.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "7A4AD752-87D1-41D8-B1FC-3D6630E842C9 - 2c122711375a2600"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (q20kshare.GameData) -&gt; Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ScrollView&lt;SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 (ComposableArchitecture.ViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action&gt;) -&gt; &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; ComposableArchitecture.WithViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action, &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in stupido.TopicsView.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  uuid = "7A4AD752-87D1-41D8-B1FC-3D6630E842C9 - 2c122711375a2600"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (q20kshare.GameData) -&gt; Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ScrollView&lt;SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 (ComposableArchitecture.ViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action&gt;) -&gt; &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; ComposableArchitecture.WithViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action, &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in stupido.TopicsView.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "456">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2CC6BBF2-79DC-4CD5-BD2B-C16FEBF715BE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/TopicsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "2CC6BBF2-79DC-4CD5-BD2B-C16FEBF715BE - 2c122711375a265e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (q20kshare.GameData) -&gt; Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ScrollView&lt;SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 (ComposableArchitecture.ViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action&gt;) -&gt; &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; ComposableArchitecture.WithViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action, &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in stupido.TopicsView.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "768">
+               </Location>
+               <Location
+                  uuid = "2CC6BBF2-79DC-4CD5-BD2B-C16FEBF715BE - 605cc1b19e365d3c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (q20kshare.GameData) -&gt; Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ScrollView&lt;SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 (ComposableArchitecture.ViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action&gt;) -&gt; &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; ComposableArchitecture.WithViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action, &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in stupido.TopicsView.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "2CC6BBF2-79DC-4CD5-BD2B-C16FEBF715BE - 2c122711375a263f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (q20kshare.GameData) -&gt; Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.ScrollView&lt;SwiftUI.ForEach&lt;IdentifiedCollections.IdentifiedArray&lt;Swift.String, q20kshare.GameData&gt;, Swift.String, Swift.Optional&lt;SwiftUI.Button&lt;stupido.OneRowView&gt;&gt;&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, ignoresSafeAreaEdges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 (ComposableArchitecture.ViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action&gt;) -&gt; &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; ComposableArchitecture.WithViewStore&lt;stupido.TopicsView.ViewState, stupido.TopicsFeature.Action, &lt;&lt;opaque return type of SwiftUI.View.task(priority: Swift.TaskPriority, _: @Sendable () async -&gt; ()) -&gt; some&gt;&gt;.0&gt; in stupido.TopicsView.body.getter : some"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "652">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D650DAA-23EB-4CA0-863D-93915BBE14AA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/TopicsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "OneRowView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "310568DD-7431-4C94-9305-C3D35DEC0D20"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "stupido/TopicsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "init(state:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "310568DD-7431-4C94-9305-C3D35DEC0D20 - 20d1a6660d1dc32c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "stupido.TopicsView.ViewState.init(state: stupido.TopicsFeature.State) -&gt; stupido.TopicsView.ViewState"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "310568DD-7431-4C94-9305-C3D35DEC0D20 - 20d1a6660d1dc32c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "stupido.TopicsView.ViewState.init(state: stupido.TopicsFeature.State) -&gt; stupido.TopicsView.ViewState"
+                  moduleName = "stupido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/stupido/stupido/TopicsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

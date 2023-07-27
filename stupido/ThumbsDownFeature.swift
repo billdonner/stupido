@@ -56,7 +56,7 @@ struct ThumbsDownView: View {
           } label: {
             Text("Cancel")
           })
-          .navigationTitle("Thumbs Up")
+          .navigationTitle("Thumbs Down")
       }
     }
   }

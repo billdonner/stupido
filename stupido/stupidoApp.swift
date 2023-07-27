@@ -19,9 +19,7 @@ var gameDatum : IdentifiedArrayOf<GameData> = []
 struct stupidoApp: App {
 //  static let onlyStore =     Store(initialState:ChallengeFeature.State(
 //    challenges:SampleData.challenges,
-//    questionNumber:0,
-//    scoreDatum: SampleData.scoreDatum,
-//    outcomes:SampleData.outcomes ))
+//    questionNumber:0 ))
 //  {  ChallengeFeature( )._printChanges()  }
    
   static let onlyStore = Store(initialState: TopicsFeature.State()) {
@@ -30,7 +28,6 @@ struct stupidoApp: App {
   
   var body: some Scene {
     WindowGroup {
-      let _ = print("Stupido is running")
       TopicsView(topicsStore:stupidoApp.onlyStore)
     }
   }

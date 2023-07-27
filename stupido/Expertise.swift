@@ -32,7 +32,7 @@ enum Expertise: String, Equatable {
     default:
         .novice
     }
-    let _ = print("topicScore \(topicScore) outcomes.count \(outcomes.count), [0] \(outcomes[0]) pct \(pct) expertise \(expertise)")
+   // let _ = print("topicScore \(topicScore) outcomes.count \(outcomes.count), [0] \(outcomes[0]) pct \(pct) expertise \(expertise)")
     return expertise
   }
 

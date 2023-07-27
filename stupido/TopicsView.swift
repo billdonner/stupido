@@ -9,37 +9,37 @@ import ComposableArchitecture
 import SwiftUI
 import q20kshare
 
-
 struct TopicsView: View {
   
   struct ViewState: Equatable {
     let isLoading:Bool
-    let topic:String
     let scoresByTopic:[String:ScoreData]
-    let grandScore:Int
+    let challengeFeature:ChallengeFeature.State
      init(state: TopicsFeature.State) {
        self.isLoading = state.isLoading
-       self.topic = state.selectedTopic
-       self.scoresByTopic =  state.challengeFeature.scoresByTopic
-       self.grandScore = state.challengeFeature.grandScore
+       self.challengeFeature = state.challengeFeature
+       self.scoresByTopic = state.challengeFeature.scoresByTopic
      }
    }
   
   let topicsStore:StoreOf<TopicsFeature>
+  
   var body: some View {
     NavigationStack {
       WithViewStore( topicsStore,observe:ViewState.init){viewStore in
         VStack {
           ScrollView {
-           // ForEach(Array(zip(1..., gameDatum)), id: \.1.id) { number, gameData in
-            ForEach(gameDatum ) {  gameData in
-              if  let sbt = viewStore.scoresByTopic[gameData.subject] {
-                OneRowView(sbt:sbt,gameData:gameData )
-                  .onTapGesture {
-                   // viewStore.send(.topicRowTapped(ChallengeFeature.Action.onceOnlyVirtualyTapped))
-                    
-                    print("must figure out what to do for tap on \(sbt.topic)")
-                  }
+          ForEach(Array(zip(1..., gameDatum)), id: \.1.id) { number, gameData in
+           // ForEach(gameDatum ) {  gameData in
+              //let _ = print(gameData.subject)
+              if  let sbt = viewStore.scoresByTopic[gameData.subject] { 
+                Button {
+                  print("must figure out what to do for tap on \(sbt.topic)")
+                  viewStore.send(.showTopicButtonTapped(number-1) )
+                } label:  {
+                  OneRowView(sbt:sbt,gameData:gameData )
+                }
+           
               }
             }// for each
           }// scrollview
@@ -53,7 +53,7 @@ struct TopicsView: View {
           ToolbarItemGroup(placement:.navigation){
             HStack {
               HStack{
-                Text("Score:\(viewStore.grandScore)")
+                Text("Score:\(viewStore.challengeFeature.grandScore)")
                 Text("Topics:\(gameDatum.count)")
                 Text("Challenges:\(gameDatum.map {$0.challenges.count}.reduce(0,+))")
               }.font(.footnote)
@@ -70,8 +70,11 @@ struct TopicsView: View {
         .sheet(
           store: self.topicsStore.scope(
             state: \.$showChallenge,
-            action: { .topicRowTapped($0) }
-          )
+            action: { .showTopic($0) }
+          ),
+          onDismiss: {
+            print("back from challengeview \(viewStore.challengeFeature.grandScore)")
+          }
         ) { store in
           NavigationStack {
             ChallengeView(challengeStore: store)
@@ -140,7 +143,7 @@ struct OneRowView: View {
       let score = sbt.playedCorrectly //- sbt.playedInCorrectly//
       RightistView (score: score, c: c, i: i)
       }
-    }
+    }.foregroundColor(.black)
     .borderedStyleStrong(.blue).padding(.horizontal)
 
   }

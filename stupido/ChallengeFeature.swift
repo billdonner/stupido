@@ -11,7 +11,8 @@ enum Showing:Equatable {
 }
 struct ChallengeFeature: ReducerProtocol {
   
-  struct State : Equatable{
+  struct State : Equatable {
+    
     internal init(topic:String = "", challenges: [Challenge] = [], questionNumber: Int = 0, showing: Showing = .qanda, isTimerRunning: Bool = false, timerCount: Int = 0) {
       self.topic = topic
       self.challenges = challenges
@@ -20,13 +21,12 @@ struct ChallengeFeature: ReducerProtocol {
       self.isTimerRunning = isTimerRunning
       self.timerCount = timerCount
     }
-    
-
-    
+ 
     static func == (lhs: ChallengeFeature.State, rhs: ChallengeFeature.State) -> Bool {
       lhs.showing == rhs.showing
       && lhs.timerCount == rhs.timerCount
     }
+    
     // present feature
     @PresentationState  var showInfoView: ShowInfoFeature.State?
     @PresentationState  var showThumbsUpView: ThumbsUpFeature.State?
@@ -43,6 +43,12 @@ struct ChallengeFeature: ReducerProtocol {
     var topics : [String] {
     scoresByTopic.map {$0.1.topic}
     }
+    var topicScore : Int {
+      if let sbt = scoresByTopic[topic] {
+        return sbt.outcomes.reduce(0) { $0 + ($1 == .playedCorrectly ? 1:0)}
+      }
+      return 0
+    }
     var grandScore : Int {
      scoresByTopic.reduce(0) { $0 + $1.1.playedCorrectly}
     }
@@ -51,6 +57,11 @@ struct ChallengeFeature: ReducerProtocol {
   enum CancelID { case timer }
   
   enum Action:Equatable {
+    case cancelButtonTapped
+    case delegate(Delegate)
+    enum Delegate:Equatable {
+     // case cancel
+    }
     case nextButtonTapped
     case previousButtonTapped
     case answer1ButtonTapped
@@ -70,58 +81,67 @@ struct ChallengeFeature: ReducerProtocol {
     case thumbsDown(PresentationAction<ThumbsDownFeature.Action>)
   }
   
-  fileprivate func startTimer(_ state: inout ChallengeFeature.State) -> EffectTask<ChallengeFeature.Action> {
-    state.isTimerRunning = true 
-    if state.isTimerRunning {
-      return .run { [ist = state.isTimerRunning ] send in
-        while  ist  {
-          try await Task.sleep(for: .seconds(1))
-          await send(.timeTick)
-        }
-      }
-      .cancellable(id: CancelID.timer)
-    } else {
-      return .cancel(id: CancelID.timer)
+  fileprivate func answerButtonTapped(_ state: inout ChallengeFeature.State,  _ idx:Int) {
+    let thisChallenge = state.challenges[state.questionNumber]
+    let t =  thisChallenge.correct == thisChallenge.answers[idx]
+    var outcomes = state.scoresByTopic[state.topic]?.outcomes ?? Array(repeating:.unplayed,count:state.challenges.count)
+    let oc =  t ? ChallengeOutcomes.playedCorrectly : .playedIncorrectly
+    // if unplayed
+    if outcomes [state.questionNumber] == ChallengeOutcomes.unplayed {
+      // adjust the outcome
+      outcomes [state.questionNumber] = oc
+      state.scoresByTopic[state.topic] = ScoreData(topic:state.topic,outcomes: outcomes)
     }
+    state.showing = t ? .answerWasCorrect : .answerWasIncorrect
+    state.isTimerRunning = false
   }
+  
+  
+  fileprivate func startTimer(_ state: inout ChallengeFeature.State) -> EffectTask<ChallengeFeature.Action> {
+    return .none 
+//    state.isTimerRunning = true
+//    if state.isTimerRunning {
+//      return .run { [ist = state.isTimerRunning ] send in
+//        while  ist  {
+//          try await Task.sleep(for: .seconds(1))
+//          await send(.timeTick)
+//        }
+//      }
+//      .cancellable(id: CancelID.timer)
+//    } else {
+//      return .cancel(id: CancelID.timer)
+//    }
+  }
+  
+  
+  
+  @Dependency(\.dismiss) var dismiss
   
  // func reduce(into state:inout State,action:Action)->EffectTask<Action> {
   var body: some ReducerProtocolOf<Self> {
     Reduce { state, action in
-      let thisChallenge = state.challenges[state.questionNumber]
       // fix up scores
-      func answerButtonTapped(_ idx:Int) {
-        let t =  thisChallenge.correct == thisChallenge.answers[idx]
-        var outcomes = state.scoresByTopic[state.topic]?.outcomes ?? Array(repeating:.unplayed,count:state.challenges.count)
-        let oc =  t ? ChallengeOutcomes.playedCorrectly : .playedIncorrectly
-        // if unplayed
-        if outcomes [state.questionNumber] == ChallengeOutcomes.unplayed {
-          // adjust the outcome
-          outcomes [state.questionNumber] = oc
-          state.scoresByTopic[state.topic] = ScoreData(topic:state.topic,outcomes: outcomes)
-
-        }
-        state.showing = t ? .answerWasCorrect : .answerWasIncorrect
-       // state.once = false
-        state.isTimerRunning = false
-      }
-      
+      let thisChallenge = state.challenges[state.questionNumber]
       
       switch action {
+      case .cancelButtonTapped:
+        return .run { _ in await self.dismiss() }
+      case .delegate:
+        return .none
       case .answer1ButtonTapped:
-        answerButtonTapped(0)
+        answerButtonTapped(&state, 0)
         return .cancel(id: CancelID.timer) // stop timer
       case .answer2ButtonTapped:
-        answerButtonTapped(1)
+        answerButtonTapped(&state,1)
         return .cancel(id: CancelID.timer)
       case .answer3ButtonTapped:
-        answerButtonTapped(2)
+        answerButtonTapped(&state,2)
         return .cancel(id: CancelID.timer)
       case .answer4ButtonTapped:
-        answerButtonTapped(3)
+        answerButtonTapped(&state,3)
         return .cancel(id: CancelID.timer)
       case .answer5ButtonTapped:
-        answerButtonTapped(4)
+        answerButtonTapped(&state,4)
         return .cancel(id: CancelID.timer)
         
       case .hintButtonTapped:
