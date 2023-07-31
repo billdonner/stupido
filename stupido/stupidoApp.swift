@@ -12,7 +12,7 @@ import q20kshare
 /*
  try to keep GameData from chatGPT as a nearly static global since its only loaded at app start or in the background
  */
-var gameDatum : IdentifiedArrayOf<GameData> = []
+var gameDatum : Array<GameData> = [] //IdentifiedArrayOf
 
 
 @main

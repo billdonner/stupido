@@ -19,8 +19,7 @@ struct ChallengeView: View {
     let questionNumber:Int
     let questionMax:Int
     let thisChallenge:Challenge
-    let thisOutcome: ChallengeOutcomes
-   // let outcomes:[ChallengeOutcomes]
+    let thisOutcome: ChallengeOutcomes 
     let topicScore:Int
     let grandScore:Int
     
@@ -29,7 +28,6 @@ struct ChallengeView: View {
       self.thisChallenge = state.challenges[state.questionNumber]
       let topic = self.thisChallenge.topic
       let x = state.scoresByTopic[topic] ?? ScoreData.default
-     // self.outcomes = x.outcomes
       self.scoresByTopic = state.scoresByTopic
       self.challenges = state.challenges
       self.showing = state.showing

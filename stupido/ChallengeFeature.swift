@@ -52,6 +52,15 @@ struct ChallengeFeature: ReducerProtocol {
     var grandScore : Int {
      scoresByTopic.reduce(0) { $0 + $1.1.playedCorrectly}
     }
+    
+    func dump() {
+      for x in scoresByTopic
+      {
+        print (x.0,terminator:" ")
+        print (x.1.outcomes.reduce(0) { $0 + ($1 == ChallengeOutcomes.playedCorrectly ? 1:0)})
+      }
+      print( grandScore)
+    }
   }// end of state
   
   enum CancelID { case timer }

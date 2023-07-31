@@ -14,6 +14,7 @@ struct TopicsFeature: ReducerProtocol {
 
   struct State:Equatable {
     static func == (lhs: TopicsFeature.State, rhs: TopicsFeature.State) -> Bool {
+      
       lhs.challengeFeature.topic == rhs.challengeFeature.topic &&
        lhs.showChallenge == rhs.showChallenge
     }
@@ -46,7 +47,6 @@ struct TopicsFeature: ReducerProtocol {
  
         state.challengeFeature.topic = gd.map{$0.subject}[0]
         state.challengeFeature.challenges = gd.map {$0.challenges} [0]
-
         state.challengeFeature.scoresByTopic = [:]
         for gdd in gd {
           state.challengeFeature.scoresByTopic[gdd.subject]=ScoreData(topic:gdd.subject,
@@ -55,7 +55,8 @@ struct TopicsFeature: ReducerProtocol {
         }
         state.isLoading = false
         state.clearAllScores(gd)
-        gameDatum = IdentifiedArray(uniqueElements: gd)
+        
+        gameDatum = gd//IdentifiedArray(uniqueElements: gd)
         print("Stupidio loaded \(gameDatum.count) topics")
         return .none
         
@@ -75,8 +76,7 @@ struct TopicsFeature: ReducerProtocol {
       case .showTopicButtonTapped(let idx) :
        //move in the data for challengeview
         state.challengeFeature.topic = gameDatum[idx].subject
-        state.challengeFeature.challenges = gameDatum[idx].challenges
-        
+        state.challengeFeature.challenges = gameDatum[idx].challenges 
         state.challengeFeature.timerCount = 0
         state.challengeFeature.isTimerRunning = false
         state.challengeFeature.questionNumber = 0
